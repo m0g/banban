@@ -9,11 +9,16 @@
 	const flipDurationMs = 200;
 
 	function handleDndConsiderColumns(e) {
+		console.log('consider', e);
 		data.board.lists = e.detail.items;
 	}
 
 	function handleDndFinalizeColumns(e) {
-		data.board.lists = e.detail.items;
+		console.log('finalize', e);
+		data.board.lists = e.detail.items.map((item, i) => ({
+			...item,
+			pos: i + 1
+		}));
 	}
 </script>
 
