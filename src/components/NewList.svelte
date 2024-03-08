@@ -3,7 +3,7 @@
 	import { enhance } from '$app/forms';
 	export let boardId;
 	export let lastPos;
-	const step = 1;
+	const step = 32;
 </script>
 
 <div class="flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-400 px-6 py-4">

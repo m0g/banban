@@ -13,18 +13,32 @@
 		data.board.lists = e.detail.items;
 	}
 
-	async function handleDndFinalizeColumns(e) {
-		data.board.lists = e.detail.items.map((item, i) => ({
-			...item,
-			pos: i + 1
-		}));
+	function handleDndFinalizeColumns(e) {
+		console.log(e.detail.info.id);
+		data.board.lists = e.detail.items;
 
-		for (let list of data.board.lists) {
-			const body = new FormData();
+		data.board.lists.forEach(async (list, i) => {
+			if (list.id === e.detail.info.id) {
+				let pos = 0;
 
-			body.append('pos', list.pos);
-			await fetch(`/lists/${list.id}`, { method: 'PUT', body });
-		}
+				if (i === 0) {
+					const firstList = data.board.lists[0];
+					pos = firstList.pos / 2;
+				} else if (i === data.board.lists.length - 1) {
+					const lastList = data.board.lists[data.board.list.length - 1];
+					pos = lastList * 2;
+				} else {
+					const prevList = data.board.lists[i - 1];
+					const nextList = data.board.lists[i + 1];
+					pos = (prevList.pos + nextList.pos) / 2;
+				}
+
+				const body = new FormData();
+
+				body.append('pos', pos);
+				await fetch(`/lists/${list.id}`, { method: 'PUT', body });
+			}
+		});
 	}
 </script>
 
