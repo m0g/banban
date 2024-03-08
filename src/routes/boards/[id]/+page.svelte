@@ -13,12 +13,18 @@
 		data.board.lists = e.detail.items;
 	}
 
-	function handleDndFinalizeColumns(e) {
-		console.log('finalize', e);
+	async function handleDndFinalizeColumns(e) {
 		data.board.lists = e.detail.items.map((item, i) => ({
 			...item,
 			pos: i + 1
 		}));
+
+		for (let list of data.board.lists) {
+			const body = new FormData();
+
+			body.append('pos', list.pos);
+			await fetch(`/lists/${list.id}`, { method: 'PUT', body });
+		}
 	}
 </script>
 
@@ -33,7 +39,7 @@
 	on:finalize={handleDndFinalizeColumns}
 >
 	{#each data.board.lists as list (list.id)}
-		<List {list} boardId={data.board.id} />
+		<List {list} boardId={data.board.id} on:click={() => console.log('start drag')} />
 	{/each}
 	<NewList
 		boardId={data.board.id}
