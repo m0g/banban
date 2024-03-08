@@ -6,6 +6,7 @@ export const actions = {
 		const data = await request.formData();
 		let name = data.get('name');
 		let boardId = parseInt(data.get('boardId'));
+		let pos = parseInt(data.get('pos'));
 
 		if (!name || !boardId) {
 			return fail(400, { name, boardId, missing: true });
@@ -18,6 +19,7 @@ export const actions = {
 		await prisma.list.create({
 			data: {
 				name,
+				pos,
 				board: { connect: { id: boardId } }
 			}
 		});
