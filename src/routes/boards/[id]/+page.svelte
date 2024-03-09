@@ -9,35 +9,37 @@
 	const flipDurationMs = 200;
 
 	function handleDndConsiderColumns(e) {
-		console.log('consider', e);
 		data.board.lists = e.detail.items;
 	}
 
 	function handleDndFinalizeColumns(e) {
-		console.log(e.detail.info.id);
-		data.board.lists = e.detail.items;
+		const lists = e.detail.items;
 
-		data.board.lists.forEach(async (list, i) => {
+		data.board.lists = lists.map((list, i) => {
 			if (list.id === e.detail.info.id) {
 				let pos = 0;
 
 				if (i === 0) {
-					const firstList = data.board.lists[0];
+					const firstList = lists[0];
 					pos = firstList.pos / 2;
-				} else if (i === data.board.lists.length - 1) {
-					const lastList = data.board.lists[data.board.list.length - 1];
-					pos = lastList * 2;
+				} else if (i === lists.length - 1) {
+					const lastList = lists[lists.length - 1];
+					console.log(lastList.pos);
+					pos = lastList.pos + list.pos;
 				} else {
-					const prevList = data.board.lists[i - 1];
-					const nextList = data.board.lists[i + 1];
+					const prevList = lists[i - 1];
+					const nextList = lists[i + 1];
 					pos = (prevList.pos + nextList.pos) / 2;
 				}
 
 				const body = new FormData();
 
 				body.append('pos', pos);
-				await fetch(`/lists/${list.id}`, { method: 'PUT', body });
+				fetch(`/lists/${list.id}`, { method: 'PUT', body });
+
+				return { ...list, pos };
 			}
+			return { ...list };
 		});
 	}
 </script>
