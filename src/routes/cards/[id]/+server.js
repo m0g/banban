@@ -1,5 +1,5 @@
 import prisma from '$lib/prisma';
-import { json } from '@sveltejs/kit';
+import { json, fail } from '@sveltejs/kit';
 
 export async function PUT({ params: { id }, request }) {
 	const data = await request.formData();

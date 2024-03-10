@@ -23,7 +23,7 @@
 
 <div class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4">
 	<div class="flex flex-row">
-		<div class="flex-grow">{list.name} (id: {list.id}, pos: {list.pos})</div>
+		<div class="flex-grow">{list.name}</div>
 		<DotsVerticalOutline class="dots-menu dark:text-white" />
 		<Dropdown triggeredBy=".dots-menu">
 			<DropdownItem on:click={deleteList}>Delete</DropdownItem>
@@ -33,7 +33,7 @@
 		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
 		on:consider={(e) => handleDndConsiderCards(list.id, e)}
 		on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
-		class="flex flex-col gap-y-2"
+		class="flex min-h-16 flex-col gap-y-2"
 	>
 		{#each cards as card (card.id)}
 			<Card {card} {boardId} />
