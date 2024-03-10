@@ -1,9 +1,4 @@
 <script>
-	import { invalidateAll } from '$app/navigation';
-	import { Dropdown, DropdownItem } from 'flowbite-svelte';
-	import { DotsVerticalOutline } from 'flowbite-svelte-icons';
-	import NewCard from './NewCard.svelte';
-
 	export let card;
 	export let boardId;
 </script>
