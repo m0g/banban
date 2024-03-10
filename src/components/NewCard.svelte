@@ -3,29 +3,28 @@
 	import { PlusSolid } from 'flowbite-svelte-icons';
 	import { enhance } from '$app/forms';
 
+	export let listId;
 	export let boardId;
-	export let lastPos;
+	export let lastPos = 0;
 
 	const step = 32;
 	let showForm = false;
 </script>
 
 {#if showForm}
-	<div class="flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-400 px-6 py-4">
-		<div>New List (pos: {lastPos + step})</div>
-		<form class="flex flex-col gap-y-2" action="/lists" method="post" use:enhance>
+	<div class="flex flex-col gap-y-2 py-4">
+		<div>New Card (pos: {lastPos + step})</div>
+		<form class="flex flex-col gap-y-2" action="/cards" method="post" use:enhance>
 			<Input type="text" name="name" placeholder="Enter list title" />
+			<input type="hidden" name="listId" value={listId} />
 			<input type="hidden" name="boardId" value={boardId} />
 			<input type="hidden" name="pos" value={lastPos + step} />
-			<Button type="submit">Add list</Button>
+			<Button type="submit">Add card</Button>
 		</form>
 	</div>
 {:else}
-	<div
-		class="flex min-w-60 cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
-		on:click={() => (showForm = !showForm)}
-	>
+	<div class="flex cursor-pointer flex-row gap-x-2 py-4" on:click={() => (showForm = !showForm)}>
 		<PlusSolid />
-		<span>Add another list</span>
+		<span>Add a card</span>
 	</div>
 {/if}

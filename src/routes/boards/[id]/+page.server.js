@@ -5,7 +5,8 @@ export const load = async ({ params: { id } }) => {
 		where: { id: Number(id) },
 		include: {
 			lists: {
-				orderBy: { pos: 'asc' }
+				orderBy: { pos: 'asc' },
+				include: { cards: { orderBy: { pos: 'asc' } } }
 			}
 		}
 	});

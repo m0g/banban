@@ -19,6 +19,7 @@ model Board {
   id    Int     @id @default(autoincrement())
   name  String?
   lists List[]
+  Card  Card[]
 }
 
 model List {
@@ -31,8 +32,11 @@ model List {
 }
 
 model Card {
-  id     Int     @id @default(autoincrement())
-  name   String?
-  list   List?   @relation(fields: [listId], references: [id])
-  listId Int?
+  id      Int     @id @default(autoincrement())
+  name    String?
+  list    List?   @relation(fields: [listId], references: [id])
+  listId  Int?
+  board   Board?  @relation(fields: [boardId], references: [id])
+  boardId Int?
+  pos     Int     @default(0)
 }

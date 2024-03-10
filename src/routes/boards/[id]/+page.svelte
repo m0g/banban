@@ -3,6 +3,7 @@
 	import Board from '../../../components/Board.svelte';
 
 	export let data;
+	console.log(data);
 </script>
 
 <Banner dismissable={false}>
