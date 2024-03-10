@@ -39,4 +39,5 @@ model Card {
   board   Board?  @relation(fields: [boardId], references: [id])
   boardId String?
   pos     Int     @default(0)
+  desc    String?
 }
