@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  banban:
+    # image: m0gd0ck/banban:latest
+    container_name: banban
+    restart: always
+    build: .
+    environment:
+      DATABASE_URL: file:./db/banban.db
+      PORT: 3000
+      NODE_ENV: production
+    volumes:
+      - ./docker/banban:/app/prisma/db
+    expose:
+      - 3000

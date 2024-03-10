@@ -13,8 +13,12 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-node": "^5.0.1",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@tiptap/core": "^2.2.4",
+    "@tiptap/pm": "^2.2.4",
+    "@tiptap/starter-kit": "^2.2.4",
     "@types/eslint": "^8.56.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
@@ -38,7 +42,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^5.10.2",
-    "better-sqlite3": "^9.4.3"
+    "@prisma/client": "^5.10.2"
   }
 }

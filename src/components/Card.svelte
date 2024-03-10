@@ -1,6 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { Modal, Button } from 'flowbite-svelte';
+	import TipTap from './TipTap.svelte';
 
 	export let card;
 	export let boardId;
@@ -8,9 +9,6 @@
 	export let focusedCardId;
 
 	let clickOutsideModal = focusedCardId == card.id ? true : false;
-
-	// $: if (clickOutsideModal) goto(`/cards/${card.id}`, { invalidateAll: false, replaceState: true });
-	// $: if (!clickOutsideModal) goto(`/boards/${boardId}`);
 </script>
 
 <div
@@ -31,4 +29,8 @@
 	on:close={() => goto(`/boards/${boardId}`)}
 >
 	<div>In list: {list.name}</div>
+	<div class="flex flex-col">
+		<h3 class="text-xl font-bold">Description</h3>
+		<TipTap />
+	</div>
 </Modal>
