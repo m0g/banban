@@ -65,7 +65,6 @@
 					pos = firstCard.pos / 2;
 				} else if (i === cards.length - 1) {
 					const lastCard = cards[cards.length - 1];
-					console.log(lastCard.pos);
 					pos = lastCard.pos + card.pos;
 				} else {
 					const prevCard = cards[i - 1];
@@ -92,8 +91,8 @@
 </script>
 
 <section
-	class="flex gap-x-2 p-2"
-	use:dndzone={{ items: board.lists, flipDurationMs, type: 'columns' }}
+	class="flex items-start gap-x-2 p-2"
+	use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
 	on:consider={handleDndConsiderLists}
 	on:finalize={handleDndFinalizeLists}
 >

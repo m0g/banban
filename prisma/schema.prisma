@@ -11,32 +11,32 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
+  id    String @id @default(nanoid())
   email String @unique
 }
 
 model Board {
-  id    Int     @id @default(autoincrement())
+  id    String  @id @default(nanoid())
   name  String?
   lists List[]
   Card  Card[]
 }
 
 model List {
-  id      Int     @id @default(autoincrement())
+  id      String  @id @default(nanoid())
   name    String?
   pos     Int     @default(0)
   board   Board?  @relation(fields: [boardId], references: [id])
-  boardId Int?
+  boardId String?
   cards   Card[]
 }
 
 model Card {
-  id      Int     @id @default(autoincrement())
+  id      String  @id @default(nanoid())
   name    String?
   list    List?   @relation(fields: [listId], references: [id])
-  listId  Int?
+  listId  String?
   board   Board?  @relation(fields: [boardId], references: [id])
-  boardId Int?
+  boardId String?
   pos     Int     @default(0)
 }

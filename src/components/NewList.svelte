@@ -22,7 +22,7 @@
 	</div>
 {:else}
 	<div
-		class="flex min-w-60 cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
+		class="flex min-w-60 shrink cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
 		on:click={() => (showForm = !showForm)}
 	>
 		<PlusSolid />

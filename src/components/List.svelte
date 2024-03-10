@@ -13,6 +13,8 @@
 
 	const flipDurationMs = 200;
 
+	$: cards = list.cards || [];
+
 	async function deleteList() {
 		await fetch(`/boards/${boardId}/lists/${list.id}`, { method: 'delete' });
 		invalidateAll();
@@ -28,14 +30,14 @@
 		</Dropdown>
 	</div>
 	<div
-		use:dndzone={{ items: list.cards, flipDurationMs, type: 'columns' }}
+		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
 		on:consider={(e) => handleDndConsiderCards(list.id, e)}
 		on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
 		class="flex flex-col gap-y-2"
 	>
-		{#each list.cards as card (card.id)}
+		{#each cards as card (card.id)}
 			<Card {card} {boardId} />
 		{/each}
 	</div>
-	<NewCard listId={list.id} {boardId} lastPos={list.cards[list.cards.length - 1]?.pos || 0} />
+	<NewCard listId={list.id} {boardId} lastPos={cards[cards.length - 1]?.pos || 0} />
 </div>

@@ -5,15 +5,15 @@ export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
 		let name = data.get('name');
-		let listId = parseInt(data.get('listId'));
-		let boardId = parseInt(data.get('boardId'));
+		let listId = data.get('listId');
+		let boardId = data.get('boardId');
 		let pos = parseInt(data.get('pos'));
 
 		if (!name || !listId || !boardId) {
 			return fail(400, { name, listId, boardId, missing: true });
 		}
 
-		if (typeof name != 'string' || typeof listId != 'number' || typeof boardId != 'number') {
+		if (typeof name != 'string' || typeof listId != 'string' || typeof boardId != 'string') {
 			return fail(400, { incorrect: true });
 		}
 

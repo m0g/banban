@@ -4,14 +4,15 @@ import { json } from '@sveltejs/kit';
 export async function PUT({ params: { id }, request }) {
 	const data = await request.formData();
 	const pos = Number(data.get('pos'));
+	const listId = data.get('listId');
 
-	if (!pos) {
+	if (!pos || !listId) {
 		return fail(400, { pos, missing: true });
 	}
 
-	await prisma.list.update({
+	await prisma.card.update({
 		where: { id },
-		data: { pos }
+		data: { pos, listId }
 	});
 
 	return json({ success: true });

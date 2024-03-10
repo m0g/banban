@@ -2,7 +2,7 @@ import prisma from '$lib/prisma';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	delete: async ({ request }) => {
+	default: async ({ request }) => {
 		const data = await request.formData();
 		let name = data.get('name');
 
