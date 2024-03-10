@@ -9,4 +9,4 @@
 	<h1>{data.board.name}</h1>
 </Banner>
 
-<Board board={data.board} />
+<Board board={data.board} focusedCardId={data.card.id} />

@@ -4,6 +4,7 @@
 	import List from './List.svelte';
 
 	export let board;
+	export let focusedCardId;
 
 	const flipDurationMs = 200;
 
@@ -103,6 +104,7 @@
 			on:click={() => console.log('start drag')}
 			{handleDndConsiderCards}
 			{handleDndFinalizeCards}
+			{focusedCardId}
 		/>
 	{/each}
 	<NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
