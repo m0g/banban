@@ -11,8 +11,17 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(nanoid())
-  email String @unique
+  id       String    @id @default(nanoid())
+  email    String    @unique
+  password String
+  Session  Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 model Board {
