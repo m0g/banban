@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   banban:
-    # image: m0gd0ck/banban:latest
+    image: m0gd0ck/banban:latest
     container_name: banban
     restart: always
     build: .
@@ -14,3 +14,5 @@ services:
       - ./docker/banban:/app/prisma/db
     expose:
       - 3000
+    ports:
+      - '3000:3000'

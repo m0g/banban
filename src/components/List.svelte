@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4">
+<div class="white flex w-72 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4">
 	<div class="flex flex-row">
 		<div class="flex-grow">{list.name}</div>
 		<DotsVerticalOutline class="dots-menu dark:text-white" />
