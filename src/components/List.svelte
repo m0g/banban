@@ -22,8 +22,8 @@
 	}
 </script>
 
-<div class="white flex w-72 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4">
-	<div class="flex flex-row">
+<div class="white flex max-h-full w-72 min-w-72 flex-col gap-y-2 rounded-lg bg-slate-500 py-4">
+	<div class="flex flex-row px-4">
 		<div class="flex-grow">{list.name}</div>
 		<DotsVerticalOutline class="dots-menu dark:text-white" />
 		<Dropdown triggeredBy=".dots-menu">
@@ -34,7 +34,7 @@
 		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
 		on:consider={(e) => handleDndConsiderCards(list.id, e)}
 		on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
-		class="flex min-h-16 flex-col gap-y-2"
+		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto px-4"
 	>
 		{#each cards as card (card.id)}
 			<Card {card} {boardId} {list} {focusedCardId} />

@@ -92,7 +92,7 @@
 </script>
 
 <section
-	class="flex items-start gap-x-2 p-2"
+	class="flex flex-grow items-start gap-x-2 overflow-x-auto p-2"
 	use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
 	on:consider={handleDndConsiderLists}
 	on:finalize={handleDndFinalizeLists}

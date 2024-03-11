@@ -12,7 +12,7 @@
 </script>
 
 {#if showForm}
-	<div class="flex flex-col gap-y-2 py-4">
+	<div class="flex flex-col gap-y-2 px-4 py-4">
 		<div>New Card (pos: {lastPos + step})</div>
 		<form class="flex flex-col gap-y-2" action="/cards" method="post" use:enhance>
 			<Input type="text" name="name" placeholder="Enter list title" />
@@ -23,7 +23,10 @@
 		</form>
 	</div>
 {:else}
-	<div class="flex cursor-pointer flex-row gap-x-2 py-4" on:click={() => (showForm = !showForm)}>
+	<div
+		class="flex cursor-pointer flex-row gap-x-2 px-4 py-4"
+		on:click={() => (showForm = !showForm)}
+	>
 		<PlusSolid />
 		<span>Add a card</span>
 	</div>
