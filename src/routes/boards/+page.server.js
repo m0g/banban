@@ -2,7 +2,9 @@ import prisma from '$lib/prisma';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
+		if (!locals.user) redirect(302, '/signin');
+
 		const data = await request.formData();
 		let name = data.get('name');
 
@@ -24,7 +26,10 @@ export const actions = {
 	}
 };
 
-export const load = async () => {
+export const load = async ({ locals }) => {
+	console.log(locals);
+	if (!locals.user) redirect(302, '/signin');
+
 	const response = await prisma.board.findMany();
 	return { boards: response };
 };

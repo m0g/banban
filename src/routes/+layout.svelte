@@ -1,6 +1,8 @@
 <script>
-	import { Navbar, NavBrand, NavHamburger, NavUl, NavLi } from 'flowbite-svelte';
+	import { Navbar, NavBrand, NavHamburger, NavUl, NavLi, DarkMode } from 'flowbite-svelte';
+	import { enhance } from '$app/forms';
 	import '../app.pcss';
+	export let data;
 </script>
 
 <div class="flex h-screen flex-col">
@@ -14,7 +16,17 @@
 		<NavUl>
 			<NavLi href="/">Home</NavLi>
 			<NavLi href="/boards">Boards</NavLi>
+			{#if !data.isLoggedIn}
+				<NavLi href="/signin">Sign in</NavLi>
+				<NavLi href="/signup">Sign up</NavLi>
+			{/if}
 		</NavUl>
+		<DarkMode />
+		{#if data.isLoggedIn}
+			<form method="post" use:enhance action="/signout">
+				<button>Sign out</button>
+			</form>
+		{/if}
 	</Navbar>
 
 	<slot />

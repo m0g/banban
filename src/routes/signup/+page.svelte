@@ -1,12 +1,19 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { Input, Button, Label } from 'flowbite-svelte';
 </script>
 
-<h1>Sign up</h1>
-<form method="post" use:enhance>
-	<label for="email">Email</label>
-	<input name="email" id="email" /><br />
-	<label for="password">Password</label>
-	<input type="password" name="password" id="password" /><br />
-	<button>Continue</button>
-</form>
+<div class="mx-auto my-4 flex w-72 flex-col gap-4 rounded-lg bg-slate-300 px-4 py-4">
+	<h1 class="text-center text-lg font-bold">Sign up</h1>
+	<form method="post" use:enhance class="flex flex-col gap-4">
+		<div>
+			<Label for="email">Email</Label>
+			<Input name="email" id="email" />
+		</div>
+		<div>
+			<Label for="password">Password</Label>
+			<Input type="password" name="password" id="password" />
+		</div>
+		<Button>Continue</Button>
+	</form>
+</div>
