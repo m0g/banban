@@ -11,7 +11,6 @@
 	export let boardId;
 	export let handleDndConsiderCards;
 	export let handleDndFinalizeCards;
-	export let focusedCardId;
 
 	const flipDurationMs = 200;
 
@@ -41,7 +40,7 @@
 		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto px-4"
 	>
 		{#each cards as card (card.id)}
-			<Card {card} {boardId} {list} {focusedCardId} />
+			<Card {card} {boardId} {list} />
 		{/each}
 	</div>
 	<NewCard listId={list.id} {boardId} lastPos={cards[cards.length - 1]?.pos || 0} />

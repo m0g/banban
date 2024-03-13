@@ -1,10 +1,13 @@
 <script>
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
 	import { dndzone } from 'svelte-dnd-action';
 	import NewList from './NewList.svelte';
 	import List from './List.svelte';
+	import CardModal from './CardModal.svelte';
 
 	export let board;
-	export let focusedCardId;
+	export let card;
 
 	const flipDurationMs = 200;
 
@@ -107,8 +110,9 @@
 			on:click={() => console.log('start drag')}
 			{handleDndConsiderCards}
 			{handleDndFinalizeCards}
-			{focusedCardId}
 		/>
 	{/each}
 	<NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
 </section>
+
+<CardModal {card} boardId={board.id} />
