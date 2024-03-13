@@ -6,7 +6,7 @@
 </script>
 
 <Banner dismissable={false}>
-	<h1>{data.board.name}</h1>
+	<h1 class="text-white">{data.board.name}</h1>
 </Banner>
 
 <Board board={data.board} />

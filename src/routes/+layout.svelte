@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex h-screen flex-col">
-	<Navbar>
+	<Navbar color="dark" class="border-b">
 		<NavBrand href="/">
 			<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 				BanBan

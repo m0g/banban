@@ -26,7 +26,7 @@ const config = {
 		}
 	},
 
-	plugins: []
+	plugins: [require('@tailwindcss/typography'), require('tailwindcss-bg-patterns')]
 };
 
 module.exports = config;

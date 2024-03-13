@@ -18,7 +18,8 @@ export const actions = {
 
 		await prisma.board.create({
 			data: {
-				name
+				name,
+				users: { connect: { id: locals.user.id } }
 			}
 		});
 
@@ -27,9 +28,12 @@ export const actions = {
 };
 
 export const load = async ({ locals }) => {
-	console.log(locals);
 	if (!locals.user) redirect(302, '/signin');
 
-	const response = await prisma.board.findMany();
-	return { boards: response };
+	const user = await prisma.user.findUnique({
+		where: { id: locals.user.id },
+		include: { boards: true }
+	});
+
+	return { boards: user.boards };
 };

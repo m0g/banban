@@ -28,12 +28,13 @@
 	placement="center"
 	on:close={() => goto(`/boards/${boardId}`)}
 	size="lg"
+	class="relative z-20 cursor-default"
 >
 	<div class="text-2xl font-bold">{card.name}</div>
-	<div class="flex flex-row">
-		<div class="flex-grow">
+	<div class="flex flex-row gap-4">
+		<div class="flex-grow gap-2">
 			<div>In list: {list.name}</div>
-			<div class="flex flex-col">
+			<div class="flex flex-col gap-2">
 				<h3 class="text-xl font-bold">Description</h3>
 				<TipTap />
 			</div>

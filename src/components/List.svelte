@@ -5,6 +5,7 @@
 	import { DotsVerticalOutline } from 'flowbite-svelte-icons';
 	import NewCard from './NewCard.svelte';
 	import Card from './Card.svelte';
+	import ListName from './ListName.svelte';
 
 	export let list;
 	export let boardId;
@@ -22,9 +23,12 @@
 	}
 </script>
 
-<div class="white flex max-h-full w-72 min-w-72 flex-col gap-y-2 rounded-lg bg-slate-500 py-4">
+<div
+	class="white relative z-[1] flex max-h-full w-72 min-w-72 flex-col gap-y-2 rounded-lg border bg-gray-100 py-4 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+>
 	<div class="flex flex-row px-4">
-		<div class="flex-grow">{list.name}</div>
+		<!-- <div class="flex-grow">{list.name}</div> -->
+		<ListName {list} />
 		<DotsVerticalOutline class="dots-menu dark:text-white" />
 		<Dropdown triggeredBy=".dots-menu">
 			<DropdownItem on:click={deleteList}>Delete</DropdownItem>

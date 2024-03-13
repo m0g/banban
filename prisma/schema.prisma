@@ -15,6 +15,7 @@ model User {
   email    String    @unique
   password String
   Session  Session[]
+  boards   Board[]
 }
 
 model Session {
@@ -29,6 +30,7 @@ model Board {
   name  String?
   lists List[]
   Card  Card[]
+  users User[]
 }
 
 model List {
