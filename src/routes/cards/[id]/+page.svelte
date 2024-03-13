@@ -1,12 +1,9 @@
 <script>
-	import { Banner } from 'flowbite-svelte';
 	import Board from '../../../components/Board.svelte';
+	import Header from '../../../components/Header.svelte';
 
 	export let data;
 </script>
 
-<Banner dismissable={false}>
-	<h1>{data.board.name}</h1>
-</Banner>
-
+<Header name={data.board.name} />
 <Board board={data.board} card={data.card} />
