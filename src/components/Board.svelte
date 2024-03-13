@@ -93,14 +93,11 @@
 </script>
 
 <section
-	class="relative flex flex-grow items-start gap-x-2 overflow-x-auto bg-white p-2"
+	class="relative flex flex-grow items-start gap-x-2 overflow-x-auto bg-gradient-to-r from-cyan-500 to-blue-500 p-2"
 	use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
 	on:consider={handleDndConsiderLists}
 	on:finalize={handleDndFinalizeLists}
 >
-	<div
-		class="pattern-isometric pattern-blue-500 pattern-bg-transparent pattern-opacity-60 pattern-size-8 absolute bottom-0 left-0 right-0 top-0 z-0"
-	></div>
 	{#each board.lists as list (list.id)}
 		<List
 			{list}

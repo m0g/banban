@@ -16,6 +16,7 @@
 	on:close={() => goto(`/boards/${boardId}`)}
 	size="lg"
 	class="relative z-20 cursor-default"
+	backdropClass="fixed inset-0 z-40 bg-gray-900 bg-opacity-40"
 >
 	<div class="text-2xl font-bold">{card.name}</div>
 	<div class="flex flex-row gap-4">
