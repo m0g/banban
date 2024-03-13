@@ -17,7 +17,7 @@
 						'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none'
 				}
 			},
-			content: '<p>Hello World! 🌍️ </p>',
+			content: '',
 			onTransaction: () => {
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;

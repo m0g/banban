@@ -6,6 +6,7 @@
 
 	export let card;
 	export let boardId;
+	console.log(card);
 </script>
 
 <Modal
@@ -24,7 +25,7 @@
 			<div>In list: {card.list.name}</div>
 			<div class="flex flex-col gap-2">
 				<h3 class="text-xl font-bold">Description</h3>
-				<TipTap />
+				<TipTap element={card.desc} />
 			</div>
 		</div>
 		<div class="flex w-48 flex-col gap-y-2">
