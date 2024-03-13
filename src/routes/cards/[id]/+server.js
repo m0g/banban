@@ -2,23 +2,29 @@ import prisma from '$lib/prisma';
 import { json, fail } from '@sveltejs/kit';
 
 export async function PUT({ params: { id }, request, locals }) {
-	console.log('puts');
 	if (!locals.user) {
 		return fail(403, 'Unauthorized');
 	}
 
-	const data = await request.formData();
-	const pos = Number(data.get('pos'));
-	const listId = data.get('listId');
+	const formData = await request.formData();
+	const pos = Number(formData.get('pos'));
+	const listId = formData.get('listId');
+	const name = formData.get('name');
 
-	if (pos == null || !listId) {
-		return fail(400, { pos, listId, missing: true });
+	let data = {};
+
+	if (pos && listId) {
+		data = { ...data, pos, listId };
+	}
+
+	if (name) {
+		data = { ...data, name };
 	}
 
 	try {
 		await prisma.card.update({
 			where: { id },
-			data: { pos, listId }
+			data
 		});
 	} catch (e) {
 		console.log('error, this is an error');

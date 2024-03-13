@@ -5,10 +5,23 @@
 	export let list;
 
 	let showForm = false;
+
+	async function onSubmit() {
+		const body = new FormData();
+
+		body.append('name', list.name);
+
+		const res = await fetch(`/lists/${list.id}`, { method: 'PUT', body });
+		const data = await res.json();
+
+		if (data.success) {
+			showForm = false;
+		}
+	}
 </script>
 
 {#if showForm}
-	<form class="flex flex-col gap-y-2" action={`/lists/${list.id}`} method="PUT">
+	<form class="flex flex-col gap-y-2" on:submit|preventDefault={onSubmit}>
 		<Input
 			type="text"
 			name="name"

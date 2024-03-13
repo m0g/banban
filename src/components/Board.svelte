@@ -1,6 +1,4 @@
 <script>
-	import { setContext } from 'svelte';
-	import { writable } from 'svelte/store';
 	import { dndzone } from 'svelte-dnd-action';
 	import NewList from './NewList.svelte';
 	import List from './List.svelte';
