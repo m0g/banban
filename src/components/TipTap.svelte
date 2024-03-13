@@ -13,8 +13,7 @@
 			extensions: [StarterKit],
 			editorProps: {
 				attributes: {
-					class:
-						'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none'
+					class: 'prose-sm dark:prose-invert prose-sm sm:prose-base m-5 focus:outline-none'
 				}
 			},
 			content: '',

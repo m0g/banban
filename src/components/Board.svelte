@@ -3,6 +3,7 @@
 	import NewList from './NewList.svelte';
 	import List from './List.svelte';
 	import CardModal from './CardModal.svelte';
+	import Header from './Header.svelte';
 
 	export let board;
 	export let card;
@@ -92,22 +93,24 @@
 	}
 </script>
 
-<section
-	class="relative flex flex-grow items-start gap-x-2 overflow-x-auto bg-gradient-to-r from-cyan-500 to-blue-500 p-2"
-	use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
-	on:consider={handleDndConsiderLists}
-	on:finalize={handleDndFinalizeLists}
->
-	{#each board.lists as list (list.id)}
-		<List
-			{list}
-			boardId={board.id}
-			on:click={() => console.log('start drag')}
-			{handleDndConsiderCards}
-			{handleDndFinalizeCards}
-		/>
-	{/each}
-	<NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
-</section>
-
+<div class="flex-grow bg-gradient-to-r from-cyan-500 to-blue-500">
+	<Header name={board.name} />
+	<section
+		class="relative flex flex-grow items-start gap-x-2 overflow-x-auto p-2"
+		use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
+		on:consider={handleDndConsiderLists}
+		on:finalize={handleDndFinalizeLists}
+	>
+		{#each board.lists as list (list.id)}
+			<List
+				{list}
+				boardId={board.id}
+				on:click={() => console.log('start drag')}
+				{handleDndConsiderCards}
+				{handleDndFinalizeCards}
+			/>
+		{/each}
+		<NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
+	</section>
+</div>
 <CardModal {card} boardId={board.id} />

@@ -5,5 +5,5 @@
 	export let data;
 </script>
 
-<Header name={data.board.name} />
+<!-- <Header name={data.board.name} /> -->
 <Board board={data.board} />
