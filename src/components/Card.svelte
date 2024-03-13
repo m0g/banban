@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-300 px-6 py-4"
+	class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-6 py-4"
 	on:click={() => goto(`/cards/${card.id}`)}
 >
 	<div class="flex flex-row">

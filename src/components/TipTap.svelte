@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { Editor } from '@tiptap/core';
 	import StarterKit from '@tiptap/starter-kit';
-	import { Button } from 'flowbite-svelte';
+	import { Button, GradientButton } from 'flowbite-svelte';
 
 	let element;
 	let editor;
@@ -35,39 +35,39 @@
 <div class="rounded-lg border-2">
 	{#if editor}
 		<div class="flex flex-row gap-4 border-b px-4 py-2">
-			<Button
+			<GradientButton
 				size="xs"
 				on:click={(e) => {
 					e.stopPropagation();
 					editor.chain().focus().toggleHeading({ level: 1 }).run();
 				}}
-				color="blue"
+				color="cyan"
 				outline={!editor.isActive('heading', { level: 1 })}
 			>
 				H1
-			</Button>
-			<Button
+			</GradientButton>
+			<GradientButton
 				size="xs"
 				on:click={(e) => {
 					e.stopPropagation();
 					editor.chain().focus().toggleHeading({ level: 2 }).run();
 				}}
-				color="blue"
+				color="cyan"
 				outline={!editor.isActive('heading', { level: 2 })}
 			>
 				H2
-			</Button>
-			<Button
+			</GradientButton>
+			<GradientButton
 				size="xs"
 				on:click={(e) => {
 					e.stopPropagation();
 					editor.chain().focus().setParagraph().run();
 				}}
-				color="blue"
+				color="cyan"
 				outline={!editor.isActive('paragraph')}
 			>
 				P
-			</Button>
+			</GradientButton>
 		</div>
 	{/if}
 
