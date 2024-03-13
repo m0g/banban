@@ -14,6 +14,6 @@
 			<Label for="password">Password</Label>
 			<Input type="password" name="password" id="password" />
 		</div>
-		<Button>Continue</Button>
+		<Button type="submit">Continue</Button>
 	</form>
 </div>
