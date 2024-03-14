@@ -10,6 +10,7 @@ export async function PUT({ params: { id }, request, locals }) {
 	const pos = Number(formData.get('pos'));
 	const listId = formData.get('listId');
 	const name = formData.get('name');
+	const desc = formData.get('desc');
 
 	let data = {};
 
@@ -21,13 +22,16 @@ export async function PUT({ params: { id }, request, locals }) {
 		data = { ...data, name };
 	}
 
+	if (desc) {
+		data = { ...data, desc };
+	}
+
 	try {
 		await prisma.card.update({
 			where: { id },
 			data
 		});
 	} catch (e) {
-		console.log('error, this is an error');
 		console.error(e);
 	}
 

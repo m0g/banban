@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { WindowSolid, TextSizeSolid } from 'flowbite-svelte-icons';
 
 	export let card;
 </script>
@@ -10,5 +11,8 @@
 >
 	<div class="flex flex-row">
 		<div class="flex-grow">{card.name}</div>
+		{#if card.desc}
+			<TextSizeSolid />
+		{/if}
 	</div>
 </div>

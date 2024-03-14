@@ -4,19 +4,23 @@
 	import StarterKit from '@tiptap/starter-kit';
 	import { Button, GradientButton } from 'flowbite-svelte';
 
+	export let onSubmit;
+	export let value;
+
 	let element;
 	let editor;
-
+	console.log(value);
 	onMount(() => {
 		editor = new Editor({
 			element: element,
 			extensions: [StarterKit],
 			editorProps: {
 				attributes: {
-					class: 'prose-sm dark:prose-invert prose-sm sm:prose-base m-5 focus:outline-none'
+					class:
+						'prose-sm dark:prose-invert prose-sm sm:prose-base m-5 focus:outline-none prose-ul:list-disc'
 				}
 			},
-			content: '',
+			content: value === null ? '' : value,
 			onTransaction: () => {
 				// force re-render so `editor.isActive` works as expected
 				editor = editor;
@@ -73,6 +77,11 @@
 	<div bind:this={element} />
 </div>
 <div class="flex flex-row gap-4">
-	<Button>Save</Button>
+	<Button
+		on:click={(e) => {
+			e.stopPropagation();
+			onSubmit(editor.getHTML());
+		}}>Save</Button
+	>
 	<Button color="alternative">Cancel</Button>
 </div>

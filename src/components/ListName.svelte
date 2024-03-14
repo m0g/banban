@@ -1,6 +1,5 @@
 <script>
-	import { enhance } from '$app/forms';
-	import { Input, Button } from 'flowbite-svelte';
+	import { Input } from 'flowbite-svelte';
 
 	export let list;
 

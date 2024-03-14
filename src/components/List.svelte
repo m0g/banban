@@ -37,7 +37,7 @@
 		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
 		on:consider={(e) => handleDndConsiderCards(list.id, e)}
 		on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
-		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto px-4"
+		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto overflow-x-hidden px-4"
 	>
 		{#each cards as card (card.id)}
 			<Card {card} {boardId} {list} />

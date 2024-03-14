@@ -4,6 +4,8 @@
 	import { WindowSolid, TextSizeSolid } from 'flowbite-svelte-icons';
 	import TipTap from './TipTap.svelte';
 	import DeleteCardButton from './DeleteCardButton.svelte';
+	import CardName from './CardName.svelte';
+	import CardDesc from './CardDesc.svelte';
 
 	export let card;
 	export let boardId;
@@ -25,7 +27,7 @@
 			<div class="flex flex-grow flex-row gap-2">
 				<WindowSolid class="h-8 w-8" />
 				<div class="flex flex-col gap-2">
-					<div class="text-2xl font-bold">{card.name}</div>
+					<CardName {card} />
 					<div>In list: {card.list.name}</div>
 				</div>
 			</div>
@@ -33,7 +35,7 @@
 				<TextSizeSolid class="h-8 w-8" />
 				<div class="flex flex-grow flex-col gap-2">
 					<h3 class="text-xl font-bold">Description</h3>
-					<TipTap element={card.desc} />
+					<CardDesc {card} />
 				</div>
 			</div>
 		</div>

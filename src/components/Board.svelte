@@ -93,7 +93,9 @@
 	}
 </script>
 
-<div class="flex-grow bg-gradient-to-r from-cyan-500 to-blue-500">
+<div
+	class="max-h-[calc(100% - 73px)] flex flex-grow flex-col bg-gradient-to-r from-cyan-500 to-blue-500"
+>
 	<Header name={board.name} />
 	<section
 		class="relative flex flex-grow items-start gap-x-2 overflow-x-auto p-2"
