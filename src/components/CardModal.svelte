@@ -42,7 +42,7 @@
 
 		<div class="flex w-48 flex-col gap-y-2">
 			<div class="font-bold">Actions</div>
-			<DeleteCardButton />
+			<DeleteCardButton cardId={card.id} {boardId} />
 		</div>
 	</div>
 </Modal>

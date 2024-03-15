@@ -1,17 +1,36 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { GradientButton, Button, Modal } from 'flowbite-svelte';
 	import { ExclamationCircleOutline } from 'flowbite-svelte-icons';
 
+	export let cardId;
+	export let boardId;
+
 	let deleteModal = false;
 
-	function onClick(e) {
+	function onOpenModal(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		deleteModal = true;
 	}
+
+	async function onConfirm(e) {
+		e.stopPropagation();
+		const response = await fetch(`/cards/${cardId}`, { method: 'DELETE' });
+
+		if (response.ok) {
+			goto(`/boards/${boardId}`);
+		}
+	}
+
+	function onCancel(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		deleteModal = false;
+	}
 </script>
 
-<GradientButton shadow color="red" on:click={onClick}>Delete</GradientButton>
+<GradientButton shadow color="red" on:click={onOpenModal}>Delete</GradientButton>
 
 <Modal bind:open={deleteModal} autoclose size="xs">
 	<div class="text-center">
@@ -19,13 +38,7 @@
 		<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
 			Are you sure you want to delete this card?
 		</h3>
-		<Button color="red" class="me-2" on:click={(e) => e.stopPropagation()}>Yes, I'm sure</Button>
-		<Button
-			color="alternative"
-			on:click={(e) => {
-				e.stopPropagation();
-				deleteModal = false;
-			}}>No, cancel</Button
-		>
+		<Button color="red" class="me-2" on:click={onConfirm}>Yes, I'm sure</Button>
+		<Button color="alternative" on:click={onCancel}>No, cancel</Button>
 	</div>
 </Modal>
