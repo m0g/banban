@@ -15,7 +15,6 @@
 	import { enhance } from '$app/forms';
 	import '../app.pcss';
 	export let data;
-	console.log(data);
 </script>
 
 <div class="flex h-screen flex-col">
@@ -55,6 +54,3 @@
 
 	<slot />
 </div>
-
-<style>
-</style>
