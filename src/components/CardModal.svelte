@@ -18,8 +18,8 @@
   placement="center"
   on:close={() => goto(`/boards/${boardId}`)}
   size="lg"
-  bodyClass="bg-slate-500 p-4 md:p-5 space-y-4 flex-1 rounded-lg text-white mb-4"
-  backdropClass="fixed inset-0 z-40 bg-gray-900 bg-opacity-40"
+  bodyClass="bg-slate-500 p-4 md:p-5 space-y-4 flex-1 rounded-lg text-white"
+  backdropClass="fixed inset-0 z-40 bg-gray-900 bg-opacity-50"
   dialogClass="fixed top-0 md:inset-0 z-50 w-full p-4 flex overflow-y-scroll justify-center items-center max-h-full"
   defaultClass=""
 >
