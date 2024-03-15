@@ -2,7 +2,7 @@
 	import { dndzone } from 'svelte-dnd-action';
 	import { invalidateAll } from '$app/navigation';
 	import { Dropdown, DropdownItem } from 'flowbite-svelte';
-	import { DotsVerticalOutline } from 'flowbite-svelte-icons';
+	import { DotsVerticalOutline, DotsHorizontalOutline } from 'flowbite-svelte-icons';
 	import NewCard from './NewCard.svelte';
 	import Card from './Card.svelte';
 	import ListName from './ListName.svelte';
@@ -28,10 +28,12 @@
 	<div class="flex flex-row px-4">
 		<!-- <div class="flex-grow">{list.name}</div> -->
 		<ListName {list} />
-		<DotsVerticalOutline class="dots-menu dark:text-white" />
-		<Dropdown triggeredBy=".dots-menu">
-			<DropdownItem on:click={deleteList}>Delete</DropdownItem>
-		</Dropdown>
+		{#if list.cards.length === 0}
+			<DotsHorizontalOutline class="dots-menu dark:text-white" />
+			<Dropdown triggeredBy=".dots-menu">
+				<DropdownItem on:click={deleteList}>Delete</DropdownItem>
+			</Dropdown>
+		{/if}
 	</div>
 	<div
 		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
