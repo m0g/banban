@@ -1,8 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { Modal } from 'flowbite-svelte';
-	import { WindowSolid, TextSizeSolid } from 'flowbite-svelte-icons';
-	import TipTap from './TipTap.svelte';
+	import { Modal, Button } from 'flowbite-svelte';
+	import { WindowSolid, TextSizeSolid, ArrowRightSolid } from 'flowbite-svelte-icons';
 	import DeleteCardButton from './DeleteCardButton.svelte';
 	import CardName from './CardName.svelte';
 	import CardDesc from './CardDesc.svelte';

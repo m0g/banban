@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { GradientButton, Button, Modal } from 'flowbite-svelte';
-	import { ExclamationCircleOutline } from 'flowbite-svelte-icons';
+	import { ExclamationCircleOutline, TrashBinSolid } from 'flowbite-svelte-icons';
 
 	export let cardId;
 	export let boardId;
@@ -30,7 +30,9 @@
 	}
 </script>
 
-<GradientButton shadow color="red" on:click={onOpenModal}>Delete</GradientButton>
+<GradientButton color="red" on:click={onOpenModal} class="relative">
+	<TrashBinSolid class="absolute left-4 h-4 w-4" /> Delete
+</GradientButton>
 
 <Modal bind:open={deleteModal} autoclose size="xs">
 	<div class="text-center">
