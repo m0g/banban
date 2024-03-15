@@ -25,7 +25,7 @@
 <div
 	class="white relative z-[1] flex max-h-full w-72 min-w-72 flex-col gap-y-2 rounded-lg border bg-gray-100 py-4 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
 >
-	<div class="flex flex-row px-4">
+	<div class="flex flex-row px-6">
 		<!-- <div class="flex-grow">{list.name}</div> -->
 		<ListName {list} />
 		{#if list.cards.length === 0}
@@ -39,7 +39,7 @@
 		use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
 		on:consider={(e) => handleDndConsiderCards(list.id, e)}
 		on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
-		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto overflow-x-hidden px-4"
+		class="flex min-h-16 flex-col gap-y-2 overflow-y-auto overflow-x-hidden px-2"
 	>
 		{#each cards as card (card.id)}
 			<Card {card} {boardId} {list} />

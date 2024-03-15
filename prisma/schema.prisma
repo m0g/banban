@@ -16,6 +16,8 @@ model User {
   password String
   Session  Session[]
   boards   Board[]
+  Action   Action[]
+  date     DateTime  @default(now())
 }
 
 model Session {
@@ -23,32 +25,47 @@ model Session {
   userId    String
   expiresAt DateTime
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+  date      DateTime @default(now())
 }
 
 model Board {
-  id    String  @id @default(nanoid())
+  id    String   @id @default(nanoid())
   name  String?
   lists List[]
   Card  Card[]
   users User[]
+  date  DateTime @default(now())
 }
 
 model List {
-  id      String  @id @default(nanoid())
+  id      String   @id @default(nanoid())
   name    String?
-  pos     Int     @default(0)
-  board   Board?  @relation(fields: [boardId], references: [id])
+  pos     Int      @default(0)
+  board   Board?   @relation(fields: [boardId], references: [id])
   boardId String?
   cards   Card[]
+  date    DateTime @default(now())
 }
 
 model Card {
-  id      String  @id @default(nanoid())
+  id      String   @id @default(nanoid())
   name    String?
-  list    List?   @relation(fields: [listId], references: [id])
+  list    List?    @relation(fields: [listId], references: [id])
   listId  String?
-  board   Board?  @relation(fields: [boardId], references: [id])
+  board   Board?   @relation(fields: [boardId], references: [id])
   boardId String?
-  pos     Int     @default(0)
+  pos     Int      @default(0)
   desc    String?
+  Action  Action[]
+  date    DateTime @default(now())
+}
+
+model Action {
+  id     String   @id @default(nanoid())
+  type   String?
+  user   User?    @relation(references: [id], fields: [userId])
+  userId String?
+  card   Card?    @relation(fields: [cardId], references: [id])
+  cardId String?
+  date   DateTime @default(now())
 }
