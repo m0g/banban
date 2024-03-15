@@ -8,7 +8,7 @@ const config = {
 
   theme: {
     extend: {
-      fontFamily: { sans: ['Manrope', 'sans-serif'] },
+      fontFamily: { sans: ['Inter', 'sans-serif'] },
       colors: {
         // flowbite-svelte
         primary: {

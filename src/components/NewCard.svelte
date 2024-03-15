@@ -38,7 +38,7 @@
   </div>
 {:else}
   <div
-    class="flex cursor-pointer flex-row gap-x-2 px-4 py-4"
+    class="flex cursor-pointer flex-row gap-x-2 px-4 pt-1"
     on:click={(e) => {
       showForm = !showForm;
       e.stopPropagation();
