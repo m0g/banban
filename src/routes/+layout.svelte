@@ -42,6 +42,7 @@
 					<span class="block truncate text-sm font-medium">{data.user.email}</span>
 				</DropdownHeader>
 				<DropdownItem href={`/users/${data.user.id}`}>Profile</DropdownItem>
+				<DropdownItem href="/settings">Settings</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
 					<form method="post" use:enhance action="/signout">
