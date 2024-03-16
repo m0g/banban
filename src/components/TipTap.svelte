@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { Editor } from '@tiptap/core';
   import StarterKit from '@tiptap/starter-kit';
+  import Link from '@tiptap/extension-link';
   import { Button, GradientButton } from 'flowbite-svelte';
 
   export let onSubmit;
@@ -9,15 +10,15 @@
 
   let element;
   let editor;
-  console.log(value);
+
   onMount(() => {
     editor = new Editor({
       element: element,
-      extensions: [StarterKit],
+      extensions: [StarterKit, Link],
       editorProps: {
         attributes: {
           class:
-            'prose-sm dark:prose-invert sm:prose-base m-5 focus:outline-none prose-ul:list-disc'
+            'prose-sm dark:prose-invert sm:prose-base m-5 focus:outline-none prose-ul:list-disc prose-a:text-primary-500'
         }
       },
       content: value === null ? '' : value,
@@ -70,6 +71,17 @@
         outline={!editor.isActive('paragraph')}
       >
         P
+      </GradientButton>
+      <GradientButton
+        size="xs"
+        on:click={(e) => {
+          e.stopPropagation();
+          editor.chain().focus().toggleLink().run();
+        }}
+        color="cyan"
+        outline={!editor.isActive('link')}
+      >
+        Link
       </GradientButton>
     </div>
   {/if}

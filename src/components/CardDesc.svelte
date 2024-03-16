@@ -1,33 +1,33 @@
 <script>
-	import TipTap from './TipTap.svelte';
-	export let card;
+  import TipTap from './TipTap.svelte';
+  export let card;
 
-	let showForm = false;
+  let showForm = false;
 
-	async function handleSubmit(value) {
-		console.log(value);
-		const body = new FormData();
+  async function handleSubmit(value) {
+    console.log(value);
+    const body = new FormData();
 
-		body.append('desc', value);
+    body.append('desc', value);
 
-		const res = await fetch(`/cards/${card.id}`, { method: 'PUT', body });
-		const data = await res.json();
+    const res = await fetch(`/cards/${card.id}`, { method: 'PUT', body });
+    const data = await res.json();
 
-		console.log(data);
-		if (data.success) {
-			showForm = false;
-			card.desc = value;
-		}
-	}
+    console.log(data);
+    if (data.success) {
+      showForm = false;
+      card.desc = value;
+    }
+  }
 </script>
 
 {#if showForm}
-	<TipTap value={card.desc} onSubmit={handleSubmit} />
+  <TipTap value={card.desc} onSubmit={handleSubmit} />
 {:else}
-	<div
-		class="prose-sm dark:prose-invert prose-ul:list-disc"
-		on:click={() => (showForm = !showForm)}
-	>
-		{@html card.desc}
-	</div>
+  <div
+    class="prose-sm dark:prose-invert prose-a:text-primary-500 prose-ul:list-disc"
+    on:click={() => (showForm = !showForm)}
+  >
+    {@html card.desc}
+  </div>
 {/if}
