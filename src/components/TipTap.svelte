@@ -3,7 +3,8 @@
   import { Editor } from '@tiptap/core';
   import StarterKit from '@tiptap/starter-kit';
   import Link from '@tiptap/extension-link';
-  import { Button, GradientButton } from 'flowbite-svelte';
+  import { Button } from 'flowbite-svelte';
+  import TipTapToolbar from './TipTapToolbar.svelte';
 
   export let onSubmit;
   export let value;
@@ -34,76 +35,11 @@
       editor.destroy();
     }
   });
-
-  function setLink(editor) {
-    const previousUrl = editor.getAttributes('link').href;
-    const url = window.prompt('URL', previousUrl);
-
-    // cancelled
-    if (url === null) {
-      return;
-    }
-
-    // empty
-    if (url === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run();
-
-      return;
-    }
-
-    // update link
-    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-  }
 </script>
 
 <div class="rounded-lg border-2">
   {#if editor}
-    <div class="flex flex-row gap-4 border-b px-4 py-2">
-      <GradientButton
-        size="xs"
-        on:click={(e) => {
-          e.stopPropagation();
-          editor.chain().focus().toggleHeading({ level: 1 }).run();
-        }}
-        color="cyan"
-        outline={!editor.isActive('heading', { level: 1 })}
-      >
-        H1
-      </GradientButton>
-      <GradientButton
-        size="xs"
-        on:click={(e) => {
-          e.stopPropagation();
-          editor.chain().focus().toggleHeading({ level: 2 }).run();
-        }}
-        color="cyan"
-        outline={!editor.isActive('heading', { level: 2 })}
-      >
-        H2
-      </GradientButton>
-      <GradientButton
-        size="xs"
-        on:click={(e) => {
-          e.stopPropagation();
-          editor.chain().focus().setParagraph().run();
-        }}
-        color="cyan"
-        outline={!editor.isActive('paragraph')}
-      >
-        P
-      </GradientButton>
-      <GradientButton
-        size="xs"
-        on:click={(e) => {
-          e.stopPropagation();
-          setLink(editor)
-        }}
-        color="cyan"
-        outline={!editor.isActive('link')}
-      >
-        Link
-      </GradientButton>
-    </div>
+    <TipTapToolbar {editor} />
   {/if}
 
   <div bind:this={element} />
