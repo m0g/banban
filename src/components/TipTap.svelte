@@ -34,6 +34,26 @@
       editor.destroy();
     }
   });
+
+  function setLink(editor) {
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('URL', previousUrl);
+
+    // cancelled
+    if (url === null) {
+      return;
+    }
+
+    // empty
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+
+      return;
+    }
+
+    // update link
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+  }
 </script>
 
 <div class="rounded-lg border-2">
@@ -76,7 +96,7 @@
         size="xs"
         on:click={(e) => {
           e.stopPropagation();
-          editor.chain().focus().toggleLink().run();
+          setLink(editor)
         }}
         color="cyan"
         outline={!editor.isActive('link')}
