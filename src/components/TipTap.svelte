@@ -18,8 +18,7 @@
       extensions: [StarterKit, Link],
       editorProps: {
         attributes: {
-          class:
-            'prose-sm dark:prose-invert sm:prose-base m-5 focus:outline-none prose-ul:list-disc prose-a:text-primary-500'
+          class: 'editor-prose mx-4 my-2'
         }
       },
       content: value === null ? '' : value,

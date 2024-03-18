@@ -4,8 +4,14 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Satoshi';
-    src: url('/satoshi.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Satoshi';
+  src: url('/satoshi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer components {
+  .editor-prose {
+    @apply prose-sm dark:prose-invert sm:prose-base focus:outline-none prose-p:my-4 prose-a:text-primary-500 prose-ul:list-disc prose-li:my-0;
+  }
 }

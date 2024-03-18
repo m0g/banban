@@ -25,7 +25,7 @@
   <TipTap value={card.desc} onSubmit={handleSubmit} />
 {:else}
   <div
-    class="prose-sm dark:prose-invert prose-a:text-primary-500 prose-ul:list-disc"
+    class="editor-prose"
     on:click={() => (showForm = !showForm)}
   >
     {@html card.desc}
