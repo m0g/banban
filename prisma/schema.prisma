@@ -18,6 +18,7 @@ model User {
   boards   Board[]
   Action   Action[]
   date     DateTime  @default(now())
+  avatar   String?
 }
 
 model Session {

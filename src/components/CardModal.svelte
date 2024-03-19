@@ -1,10 +1,11 @@
 <script>
   import { goto } from '$app/navigation';
   import { Modal, Button } from 'flowbite-svelte';
-  import { WindowSolid, TextSizeSolid, ListSolid } from 'flowbite-svelte-icons';
+  import { WindowSolid, TextSizeSolid, ListSolid, PaperClipSolid } from 'flowbite-svelte-icons';
   import DeleteCardButton from './DeleteCardButton.svelte';
   import CardName from './CardName.svelte';
   import CardDesc from './CardDesc.svelte';
+  import Dropzone from './Dropzone.svelte';
 
   export let card;
   export let boardId;
@@ -39,6 +40,14 @@
           <CardDesc {card} />
         </div>
       </div>
+      <div class="flex flex-grow flex-row gap-2">
+        <PaperClipSolid class="h-8 w-8" />
+        <div class="flex flex-grow flex-col gap-2">
+          <h3 class="text-xl font-bold">Attachments</h3>
+          <Dropzone />
+        </div>
+      </div>
+
       <div class="flex flex-grow flex-row gap-2">
         <ListSolid class="h-8 w-8" />
         <div class="flex flex-grow flex-col gap-2">
