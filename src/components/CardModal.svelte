@@ -5,11 +5,10 @@
   import DeleteCardButton from './DeleteCardButton.svelte';
   import CardName from './CardName.svelte';
   import CardDesc from './CardDesc.svelte';
-  import Dropzone from './Dropzone.svelte';
+  import CardAttachments from './CardAttachments.svelte';
 
   export let card;
   export let boardId;
-  console.log(card);
 </script>
 
 <Modal
@@ -44,7 +43,7 @@
         <PaperClipSolid class="h-8 w-8" />
         <div class="flex flex-grow flex-col gap-2">
           <h3 class="text-xl font-bold">Attachments</h3>
-          <Dropzone />
+          <CardAttachments {card} />
         </div>
       </div>
 

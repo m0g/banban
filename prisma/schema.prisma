@@ -11,14 +11,15 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(nanoid())
-  email    String    @unique
-  password String
-  Session  Session[]
-  boards   Board[]
-  Action   Action[]
-  date     DateTime  @default(now())
-  avatar   String?
+  id         String       @id @default(nanoid())
+  email      String       @unique
+  password   String
+  Session    Session[]
+  boards     Board[]
+  Action     Action[]
+  date       DateTime     @default(now())
+  avatar     String?
+  Attachment Attachment[]
 }
 
 model Session {
@@ -49,16 +50,17 @@ model List {
 }
 
 model Card {
-  id      String   @id @default(nanoid())
-  name    String?
-  list    List?    @relation(fields: [listId], references: [id])
-  listId  String?
-  board   Board?   @relation(fields: [boardId], references: [id])
-  boardId String?
-  pos     Int      @default(0)
-  desc    String?
-  Action  Action[]
-  date    DateTime @default(now())
+  id          String       @id @default(nanoid())
+  name        String?
+  list        List?        @relation(fields: [listId], references: [id])
+  listId      String?
+  board       Board?       @relation(fields: [boardId], references: [id])
+  boardId     String?
+  pos         Int          @default(0)
+  desc        String?
+  Action      Action[]
+  date        DateTime     @default(now())
+  attachments Attachment[]
 }
 
 model Action {
@@ -69,4 +71,16 @@ model Action {
   card   Card?    @relation(fields: [cardId], references: [id])
   cardId String?
   date   DateTime @default(now())
+}
+
+model Attachment {
+  id       String   @id @default(nanoid())
+  url      String?
+  type     String?
+  filename String?
+  user     User?    @relation(references: [id], fields: [userId])
+  userId   String?
+  card     Card?    @relation(fields: [cardId], references: [id])
+  cardId   String?
+  date     DateTime @default(now())
 }

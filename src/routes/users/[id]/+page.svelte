@@ -1,6 +1,5 @@
 <script>
-	let data;
-	console.log(data);
+  let data;
 </script>
 
 user info

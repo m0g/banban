@@ -4,7 +4,6 @@
   import { Button, Input, Label } from 'flowbite-svelte';
 
   export let data;
-  console.log(data);
 </script>
 
 <main class="flex flex-grow flex-col bg-gradient-to-r from-lime-500 to-green-500">

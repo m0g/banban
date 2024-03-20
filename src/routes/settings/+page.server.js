@@ -23,7 +23,6 @@ export const actions = {
       });
       // TODO: store the file path in database for further references.
     } catch (err) {
-      console.log('err', err);
       return fail(500, { err: err });
     }
     redirect(303, '/settings');
