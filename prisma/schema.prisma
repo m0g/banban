@@ -74,7 +74,7 @@ model Action {
   userId       String?
   card         Card?       @relation(fields: [cardId], references: [id])
   cardId       String?
-  attachment   Attachment? @relation(fields: [attachmentId], references: [id])
+  attachment   Attachment? @relation(fields: [attachmentId], references: [id], onDelete: Cascade)
   attachmentId String?
   date         DateTime    @default(now())
 }

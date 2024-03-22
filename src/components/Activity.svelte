@@ -16,7 +16,7 @@
       <div>
         <b class="font-bold">{action.user.name}</b>
         {#if action.type == 'addAttachmentToCard'}
-          <span>attached {action.attachment.filename} to this card</span>
+          <span>attached <b class="font-bold">{action.attachment.filename}</b> to this card</span>
         {:else if action.type == 'moveCard'}
           <span>moved this card to XXX</span>
         {:else}
