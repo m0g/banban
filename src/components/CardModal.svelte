@@ -6,10 +6,10 @@
   import CardName from './CardName.svelte';
   import CardDesc from './CardDesc.svelte';
   import CardAttachments from './CardAttachments.svelte';
+  import CardActivities from './CardActivities.svelte';
 
   export let card;
   export let boardId;
-  console.log(card);
 </script>
 
 <Modal
@@ -50,15 +50,9 @@
 
       <div class="flex flex-grow flex-row gap-2">
         <ListSolid class="h-8 w-8" />
-        <div class="flex flex-grow flex-col gap-2">
-          <h3 class="text-xl font-bold">Activity</h3>
-          <ul>
-            {#each card.actions as action}
-              <li>{action.type}</li>
-            {/each}
-          </ul>
-        </div>
+        <h3 class="text-xl font-bold">Activity</h3>
       </div>
+      <CardActivities {card} />
     </div>
 
     <div class="flex w-48 flex-none flex-col gap-y-2">

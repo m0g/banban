@@ -11,7 +11,10 @@ export const load = async ({ params: { id } }) => {
       board: true,
       list: true,
       attachments: true,
-      actions: { orderBy: { date: 'desc' } }
+      actions: {
+        orderBy: { date: 'desc' },
+        include: { user: true }
+      }
     }
   });
 
