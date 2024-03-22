@@ -67,13 +67,15 @@ model Card {
 }
 
 model Action {
-  id     String   @id @default(nanoid())
-  type   String?
-  user   User?    @relation(references: [id], fields: [userId])
-  userId String?
-  card   Card?    @relation(fields: [cardId], references: [id])
-  cardId String?
-  date   DateTime @default(now())
+  id           String      @id @default(nanoid())
+  type         String?
+  user         User?       @relation(references: [id], fields: [userId])
+  userId       String?
+  card         Card?       @relation(fields: [cardId], references: [id])
+  cardId       String?
+  attachment   Attachment? @relation(fields: [attachmentId], references: [id])
+  attachmentId String?
+  date         DateTime    @default(now())
 }
 
 model Attachment {
@@ -86,4 +88,5 @@ model Attachment {
   card     Card?    @relation(fields: [cardId], references: [id])
   cardId   String?
   date     DateTime @default(now())
+  Action   Action[]
 }

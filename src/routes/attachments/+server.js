@@ -13,15 +13,24 @@ export async function POST({ locals, request }) {
   const file = formData.get('file');
   const fileName = `${crypto.randomUUID()}.${file.name}`;
   const filePath = path.join(process.cwd(), 'storage', fileName);
-
   await fs.writeFile(filePath, Buffer.from(await file.arrayBuffer()));
-  await prisma.attachment.create({
+
+  const attachment = await prisma.attachment.create({
     data: {
       filename: file.name,
       type: file.type,
       url: fileName,
       user: { connect: { id: locals.user.id } },
       card: { connect: { id: cardId } }
+    }
+  });
+
+  await prisma.action.create({
+    data: {
+      type: 'addAttachmentToCard',
+      card: { connect: { id: cardId } },
+      attachment: { connect: { id: attachment.id } },
+      user: { connect: { id: locals.user.id } }
     }
   });
 

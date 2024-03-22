@@ -7,7 +7,12 @@ import sharp from 'sharp';
 export const load = async ({ params: { id } }) => {
   const card = await prisma.card.findUnique({
     where: { id },
-    include: { board: true, list: true, attachments: true, actions: true }
+    include: {
+      board: true,
+      list: true,
+      attachments: true,
+      actions: { orderBy: { date: 'desc' } }
+    }
   });
 
   const board = await prisma.board.findUnique({
