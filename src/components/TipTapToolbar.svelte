@@ -1,5 +1,6 @@
 <script>
   import { GradientButton } from 'flowbite-svelte';
+  import { CodeSolid } from 'flowbite-svelte-icons';
 
   export let editor;
 
@@ -68,5 +69,16 @@
     outline={!editor.isActive('link')}
   >
     Link
+  </GradientButton>
+  <GradientButton
+    size="xs"
+    on:click={(e) => {
+      e.stopPropagation();
+      editor.chain().focus().toggleCodeBlock().run();
+    }}
+    color="cyan"
+    outline={editor.isActive('codeBlock')}
+  >
+    <CodeSolid />
   </GradientButton>
 </div>

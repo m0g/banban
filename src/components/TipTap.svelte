@@ -3,6 +3,7 @@
   import { Editor } from '@tiptap/core';
   import StarterKit from '@tiptap/starter-kit';
   import Link from '@tiptap/extension-link';
+  import CodeBlock from '@tiptap/extension-code-block';
   import { Button } from 'flowbite-svelte';
   import TipTapToolbar from './TipTapToolbar.svelte';
 
@@ -15,7 +16,7 @@
   onMount(() => {
     editor = new Editor({
       element: element,
-      extensions: [StarterKit, Link],
+      extensions: [StarterKit, Link, CodeBlock],
       editorProps: {
         attributes: {
           class: 'editor-prose mx-4 my-2'
