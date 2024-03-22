@@ -2,59 +2,74 @@ import prisma from '$lib/prisma';
 import { json, fail } from '@sveltejs/kit';
 
 export async function DELETE({ params: { id }, request, locals }) {
-	if (!locals.user) {
-		return fail(403, 'Unauthorized');
-	}
+  if (!locals.user) {
+    return fail(403, 'Unauthorized');
+  }
 
-	await prisma.card.delete({
-		where: { id },
-		include: {
-			board: {
-				include: {
-					users: {
-						where: { id: locals.user.id }
-					}
-				}
-			}
-		}
-	});
+  await prisma.card.delete({
+    where: { id },
+    include: {
+      board: {
+        include: {
+          users: {
+            where: { id: locals.user.id }
+          }
+        }
+      }
+    }
+  });
 
-	return json({ success: true });
+  return json({ success: true });
 }
 
 export async function PUT({ params: { id }, request, locals }) {
-	if (!locals.user) {
-		return fail(403, 'Unauthorized');
-	}
+  if (!locals.user) {
+    return fail(403, 'Unauthorized');
+  }
 
-	const formData = await request.formData();
-	const pos = Number(formData.get('pos'));
-	const listId = formData.get('listId');
-	const name = formData.get('name');
-	const desc = formData.get('desc');
+  const card = await prisma.card.findUnique({
+    where: { id },
+    include: { list: true }
+  });
 
-	let data = {};
+  const formData = await request.formData();
+  const pos = Number(formData.get('pos'));
+  const listId = formData.get('listId');
+  const name = formData.get('name');
+  const desc = formData.get('desc');
 
-	if (pos && listId) {
-		data = { ...data, pos, listId };
-	}
+  let data = {};
 
-	if (name) {
-		data = { ...data, name };
-	}
+  if (pos && listId) {
+    data = { ...data, pos, listId };
+  }
 
-	if (desc) {
-		data = { ...data, desc };
-	}
+  if (name) {
+    data = { ...data, name };
+  }
 
-	try {
-		await prisma.card.update({
-			where: { id },
-			data
-		});
-	} catch (e) {
-		console.error(e);
-	}
+  if (desc) {
+    data = { ...data, desc };
+  }
 
-	return json({ success: true });
+  try {
+    await prisma.card.update({
+      where: { id },
+      data
+    });
+  } catch (e) {
+    console.error(e);
+  }
+
+  if (card.list.id !== listId) {
+    await prisma.action.create({
+      data: {
+        type: 'moveCard',
+        card: { connect: { id: card.id } },
+        user: { connect: { id: locals.user.id } }
+      }
+    });
+  }
+
+  return json({ success: true });
 }
