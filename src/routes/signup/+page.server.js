@@ -7,7 +7,12 @@ export const actions = {
   default: async (event) => {
     const formData = await event.request.formData();
     const email = formData.get('email');
+    const name = formData.get('name');
     const password = formData.get('password');
+
+    if (!name || !email || !password) {
+      return fail(400, { name, email, password, missing: true });
+    }
     // username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
     // keep in mind some database (e.g. mysql) are case insensitive
     if (typeof email !== 'string') {
@@ -27,6 +32,7 @@ export const actions = {
     const user = await prisma.user.create({
       data: {
         email,
+        name,
         password: hashedPassword
       }
     });

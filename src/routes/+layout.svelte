@@ -35,7 +35,11 @@
     </NavUl>
     <DarkMode />
     {#if data.isLoggedIn}
-      <Avatar id="user-drop" src={`/images/${data.user.avatar}`} class="cursor-pointer" />
+      {#if data.user.avatar}
+        <Avatar id="user-drop" src={`/images/${data.user.avatar}`} class="cursor-pointer" />
+      {:else}
+        <Avatar id="user-drop" class="cursor-pointer" />
+      {/if}
       <Dropdown triggeredBy="#user-drop">
         <DropdownHeader>
           <span class="block text-sm">{data.user.name}</span>

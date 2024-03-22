@@ -1,9 +1,11 @@
 <script>
-	import Board from '../../../components/Board.svelte';
-	import Header from '../../../components/Header.svelte';
+  import Board from '../../../components/Board.svelte';
 
-	export let data;
+  export let data;
 </script>
 
-<!-- <Header name={data.board.name} /> -->
+<svelte:head>
+  <title>{data.board.name} | BanBan</title>
+</svelte:head>
+
 <Board board={data.board} />

@@ -6,6 +6,10 @@
   export let data;
 </script>
 
+<svelte:head>
+  <title>Settings | BanBan</title>
+</svelte:head>
+
 <main class="flex flex-grow flex-col bg-gradient-to-r from-lime-500 to-green-500">
   <Header name="Settings" />
   <div class="flex flex-grow place-content-center py-10">

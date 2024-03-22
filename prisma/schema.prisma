@@ -14,7 +14,7 @@ model User {
   id         String       @id @default(nanoid())
   email      String       @unique
   password   String
-  name       String?
+  name       String
   Session    Session[]
   boards     Board[]
   Action     Action[]
@@ -34,7 +34,7 @@ model Session {
 
 model Board {
   id    String   @id @default(nanoid())
-  name  String?
+  name  String
   lists List[]
   Card  Card[]
   users User[]
@@ -43,7 +43,7 @@ model Board {
 
 model List {
   id      String   @id @default(nanoid())
-  name    String?
+  name    String
   pos     Int      @default(0)
   board   Board?   @relation(fields: [boardId], references: [id])
   boardId String?
@@ -53,7 +53,7 @@ model List {
 
 model Card {
   id          String       @id @default(nanoid())
-  name        String?
+  name        String
   list        List?        @relation(fields: [listId], references: [id])
   listId      String?
   board       Board?       @relation(fields: [boardId], references: [id])

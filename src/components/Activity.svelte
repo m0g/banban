@@ -6,7 +6,6 @@
   export let action;
 
   dayjs.extend(relativeTime);
-  console.log(action);
 </script>
 
 <div>
