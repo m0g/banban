@@ -13,7 +13,7 @@ export const load = async ({ params: { id } }) => {
       attachments: true,
       actions: {
         orderBy: { date: 'desc' },
-        include: { user: true }
+        include: { user: true, attachment: true }
       }
     }
   });

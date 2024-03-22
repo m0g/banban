@@ -12,10 +12,10 @@
     <div class="flex flex-col">
       <img src={`/images/${data.user.avatar}`} alt="profile" class="w-96" />
       <Dropzone action="?/avatar" />
-      <form method="POST" class="flex flex-col gap-2">
+      <form action="?/name" method="POST" class="flex flex-col gap-2">
         <div>
           <Label for="name">Your name</Label>
-          <Input name="name" />
+          <Input name="name" value={data.user.name} />
         </div>
         <div>
           <Button type="submit">Save</Button>

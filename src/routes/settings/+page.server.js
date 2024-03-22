@@ -5,6 +5,28 @@ import { redirect, fail } from '@sveltejs/kit';
 import sharp from 'sharp';
 
 export const actions = {
+  name: async ({ request, locals }) => {
+    if (!locals.user) {
+      return fail(403, 'Unauthorized');
+    }
+
+    const data = await request.formData();
+    let name = data.get('name');
+
+    if (!name) {
+      return fail(400, { name, missing: true });
+    }
+
+    if (typeof name != 'string') {
+      return fail(400, { incorrect: true });
+    }
+
+    await prisma.user.update({
+      where: { id: locals.user.id },
+      data: { name }
+    });
+  },
+
   avatar: async ({ request, locals }) => {
     if (!locals.user) {
       return fail(403, 'Unauthorized');

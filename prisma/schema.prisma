@@ -14,6 +14,7 @@ model User {
   id         String       @id @default(nanoid())
   email      String       @unique
   password   String
+  name       String?
   Session    Session[]
   boards     Board[]
   Action     Action[]
