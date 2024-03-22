@@ -9,6 +9,7 @@
 
   export let card;
   export let boardId;
+  console.log(card);
 </script>
 
 <Modal
@@ -51,6 +52,11 @@
         <ListSolid class="h-8 w-8" />
         <div class="flex flex-grow flex-col gap-2">
           <h3 class="text-xl font-bold">Activity</h3>
+          <ul>
+            {#each card.actions as action}
+              <li>{action.type}</li>
+            {/each}
+          </ul>
         </div>
       </div>
     </div>

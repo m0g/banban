@@ -20,6 +20,7 @@ model User {
   date       DateTime     @default(now())
   avatar     String?
   Attachment Attachment[]
+  Card       Card[]
 }
 
 model Session {
@@ -58,9 +59,11 @@ model Card {
   boardId     String?
   pos         Int          @default(0)
   desc        String?
-  Action      Action[]
+  actions     Action[]
   date        DateTime     @default(now())
   attachments Attachment[]
+  user        User?        @relation(references: [id], fields: [userId])
+  userId      String?
 }
 
 model Action {
