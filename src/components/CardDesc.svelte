@@ -23,6 +23,10 @@
   <TipTap value={card.desc} onSubmit={handleSubmit} />
 {:else}
   <div class="editor-prose" on:click={() => (showForm = !showForm)}>
-    {@html card.desc}
+    {#if card.desc}
+      {@html card.desc}
+    {:else}
+      <span>Add a more detailed description...</span>
+    {/if}
   </div>
 {/if}
