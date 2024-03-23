@@ -4,7 +4,11 @@ import path from 'path';
 import { redirect, fail } from '@sveltejs/kit';
 import sharp from 'sharp';
 
-export const load = async ({ params: { id } }) => {
+export const load = async ({ params: { id }, locals }) => {
+  if (!locals.user) {
+    return fail(403, 'Unauthorized');
+  }
+
   const card = await prisma.card.findUnique({
     where: { id },
     include: {
@@ -33,5 +37,10 @@ export const load = async ({ params: { id } }) => {
     }
   });
 
-  return { board, card };
+  const user = await prisma.user.findUnique({
+    where: { id: locals.user.id },
+    select: { name: true, avatar: true }
+  });
+
+  return { board, card, user };
 };

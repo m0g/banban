@@ -10,6 +10,7 @@
 
   export let card;
   export let boardId;
+  export let user;
 </script>
 
 <Modal
@@ -52,7 +53,7 @@
         <ListSolid class="h-8 w-8" />
         <h3 class="text-xl font-bold">Activity</h3>
       </div>
-      <CardActivities {card} />
+      <CardActivities {card} {user} />
     </div>
 
     <div class="flex w-48 flex-none flex-col gap-y-2">

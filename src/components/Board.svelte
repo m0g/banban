@@ -7,6 +7,7 @@
 
   export let board;
   export let card;
+  export let user;
 
   const flipDurationMs = 200;
 
@@ -101,7 +102,7 @@
     <NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
   </section>
 </div>
-<CardModal {card} boardId={board.id} />
+<CardModal {card} boardId={board.id} {user} />
 
 <style>
   .page {
