@@ -22,6 +22,7 @@ model User {
   avatar     String?
   Attachment Attachment[]
   Card       Card[]
+  Comment    Comment[]
 }
 
 model Session {
@@ -65,6 +66,7 @@ model Card {
   attachments Attachment[]
   user        User?        @relation(references: [id], fields: [userId])
   userId      String?
+  Comment     Comment[]
 }
 
 model Action {
@@ -77,6 +79,8 @@ model Action {
   attachment   Attachment? @relation(fields: [attachmentId], references: [id], onDelete: Cascade)
   attachmentId String?
   date         DateTime    @default(now())
+  comment      Comment?    @relation(fields: [commentId], references: [id])
+  commentId    String?
 }
 
 model Attachment {
@@ -90,4 +94,15 @@ model Attachment {
   cardId   String?
   date     DateTime @default(now())
   Action   Action[]
+}
+
+model Comment {
+  id     String   @id @default(nanoid())
+  text   String?
+  user   User?    @relation(references: [id], fields: [userId])
+  userId String?
+  card   Card?    @relation(fields: [cardId], references: [id])
+  cardId String?
+  date   DateTime @default(now())
+  Action Action[]
 }
