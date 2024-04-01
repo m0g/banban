@@ -79,7 +79,7 @@ model Action {
   attachment   Attachment? @relation(fields: [attachmentId], references: [id], onDelete: Cascade)
   attachmentId String?
   date         DateTime    @default(now())
-  comment      Comment?    @relation(fields: [commentId], references: [id])
+  comment      Comment?    @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId    String?
 }
 

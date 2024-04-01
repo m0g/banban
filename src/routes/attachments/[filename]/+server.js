@@ -20,7 +20,7 @@ export async function GET({ params: { filename }, locals }) {
   }
 }
 
-export async function DELETE({ params: { filename }, request, locals }) {
+export async function DELETE({ params: { filename }, locals }) {
   if (!locals.user) {
     return fail(403, 'Unauthorized');
   }
