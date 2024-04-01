@@ -30,7 +30,7 @@ export const load = async ({ params: { id }, locals }) => {
         include: {
           cards: {
             orderBy: { pos: 'asc' },
-            include: { attachments: true }
+            include: { attachments: true, comments: true }
           }
         }
       }

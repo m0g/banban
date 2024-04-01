@@ -1,6 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
-  import { TextSizeSolid, PaperClipSolid } from 'flowbite-svelte-icons';
+  import { TextSizeSolid, PaperClipSolid, AnnotationSolid } from 'flowbite-svelte-icons';
 
   export let card;
 </script>
@@ -16,6 +16,9 @@
     {/if}
     {#if card.attachments.length > 0}
       <PaperClipSolid />
+    {/if}
+    {#if card.comments.length > 0}
+      <AnnotationSolid />
     {/if}
   </div>
 </div>
