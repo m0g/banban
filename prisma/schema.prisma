@@ -11,18 +11,20 @@ datasource db {
 }
 
 model User {
-  id         String       @id @default(nanoid())
-  email      String       @unique
-  password   String
-  name       String
-  Session    Session[]
-  boards     Board[]
-  Action     Action[]
-  date       DateTime     @default(now())
-  avatar     String?
-  Attachment Attachment[]
-  Card       Card[]
-  Comment    Comment[]
+  id          String       @id @default(nanoid())
+  email       String       @unique
+  password    String
+  name        String
+  Session     Session[]
+  boards      Board[]
+  Action      Action[]
+  date        DateTime     @default(now())
+  avatar      String?
+  attachments Attachment[]
+  cards       Card[]
+  comments    Comment[]
+  checkLists  CheckList[]
+  CheckItem   CheckItem[]
 }
 
 model Session {
@@ -67,6 +69,7 @@ model Card {
   user        User?        @relation(references: [id], fields: [userId])
   userId      String?
   comments    Comment[]
+  checklists  CheckList[]
 }
 
 model Action {
@@ -93,7 +96,7 @@ model Attachment {
   card     Card?    @relation(fields: [cardId], references: [id])
   cardId   String?
   date     DateTime @default(now())
-  Action   Action[]
+  action   Action[]
 }
 
 model Comment {
@@ -104,5 +107,28 @@ model Comment {
   card   Card?    @relation(fields: [cardId], references: [id])
   cardId String?
   date   DateTime @default(now())
-  Action Action[]
+  action Action[]
+}
+
+model CheckList {
+  id         String      @id @default(nanoid())
+  name       String
+  user       User?       @relation(references: [id], fields: [userId])
+  userId     String?
+  card       Card?       @relation(fields: [cardId], references: [id])
+  cardId     String?
+  checkItems CheckItem[]
+  date       DateTime    @default(now())
+}
+
+model CheckItem {
+  id          String     @id @default(nanoid())
+  name        String
+  pos         Int        @default(0)
+  state       String
+  checkList   CheckList? @relation(fields: [checkListId], references: [id])
+  checkListId String?
+  user        User?      @relation(references: [id], fields: [userId])
+  userId      String?
+  date        DateTime   @default(now())
 }

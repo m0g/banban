@@ -1,12 +1,19 @@
 <script>
   import { goto } from '$app/navigation';
-  import { Modal, Button } from 'flowbite-svelte';
-  import { WindowSolid, TextSizeSolid, ListSolid, PaperClipSolid } from 'flowbite-svelte-icons';
+  import { Modal, Button, GradientButton } from 'flowbite-svelte';
+  import {
+    WindowSolid,
+    TextSizeSolid,
+    ListSolid,
+    PaperClipSolid,
+    CheckCircleSolid
+  } from 'flowbite-svelte-icons';
   import DeleteCardButton from './DeleteCardButton.svelte';
   import CardName from './CardName.svelte';
   import CardDesc from './CardDesc.svelte';
   import CardAttachments from './CardAttachments.svelte';
   import CardActivities from './CardActivities.svelte';
+  import ChecklistButton from './ChecklistButton.svelte';
 
   export let card;
   export let boardId;
@@ -58,6 +65,7 @@
 
     <div class="flex w-48 flex-none flex-col gap-y-2">
       <div class="font-bold">Actions</div>
+      <ChecklistButton cardId={card.id} {boardId} />
       <DeleteCardButton cardId={card.id} {boardId} />
     </div>
   </div>
