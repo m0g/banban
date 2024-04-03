@@ -6,35 +6,39 @@
     NavHamburger,
     NavUl,
     NavLi,
-    DarkMode,
+    Button,
     Dropdown,
     DropdownHeader,
     DropdownItem,
     DropdownDivider
   } from 'flowbite-svelte';
+  import { ChevronDownSolid } from 'flowbite-svelte-icons';
   import { enhance } from '$app/forms';
   import '../app.pcss';
+  import RecentBoards from '../components/RecentBoards.svelte';
   export let data;
 </script>
 
 <div class="flex h-screen flex-col">
   <Navbar color="dark" class="border-b">
-    <NavBrand href="/" class="flex gap-2">
-      <img src="/favicon.svg" alt="BanBan logo" class="w-8" />
-      <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-        BanBan
-      </span>
-    </NavBrand>
-    <NavHamburger />
-    <NavUl>
-      <NavLi href="/">Home</NavLi>
-      <NavLi href="/boards">Boards</NavLi>
-      {#if !data.isLoggedIn}
-        <NavLi href="/signin">Sign in</NavLi>
-        <NavLi href="/signup">Sign up</NavLi>
+    <div class="flex gap-2">
+      <NavBrand href="/" class="flex gap-2">
+        <img src="/favicon.svg" alt="BanBan logo" class="w-8" />
+        <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          BanBan
+        </span>
+      </NavBrand>
+      <NavHamburger />
+      {#if data.isLoggedIn && data.user.boards.length > 0}
+        <RecentBoards boards={data.user.boards} />
       {/if}
-    </NavUl>
-    <DarkMode />
+      <NavUl>
+        {#if !data.isLoggedIn}
+          <NavLi href="/signin">Sign in</NavLi>
+          <NavLi href="/signup">Sign up</NavLi>
+        {/if}
+      </NavUl>
+    </div>
     {#if data.isLoggedIn}
       {#if data.user.avatar}
         <Avatar id="user-drop" src={`/images/${data.user.avatar}`} class="cursor-pointer" />

@@ -15,7 +15,7 @@
     <CheckCircleSolid class="absolute left-4 h-4 w-4" /> Checklist
   </Button>
   <Popover
-    class="fixed z-10 w-64 text-sm font-light"
+    class="z-10 w-64 text-sm font-light"
     title="Add checklist"
     triggeredBy="#click"
     trigger="click"
