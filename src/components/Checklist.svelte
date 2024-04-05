@@ -1,8 +1,19 @@
 <script>
   import { CheckCircleOutline } from 'flowbite-svelte-icons';
-  import { Button } from 'flowbite-svelte';
+  import { Button, Popover } from 'flowbite-svelte';
+  import { invalidateAll } from '$app/navigation';
 
   export let checklist;
+
+  async function onConfirm(e) {
+    e.stopPropagation();
+    const response = await fetch(`/checklists/${checklist.id}`, { method: 'DELETE' });
+
+    if (response.ok) {
+      invalidateAll();
+      document.querySelector(`#deleteChecklist-${checklist.id}`)?.click();
+    }
+  }
 </script>
 
 <div class="flex flex-grow flex-row gap-2">
@@ -10,7 +21,26 @@
   <div class="flex flex-grow flex-col gap-2">
     <div class="flex">
       <h3 class="flex-grow text-xl font-bold">{checklist.name}</h3>
-      <Button color="alternative">Delete</Button>
+      <Button
+        color="alternative"
+        id={`deleteChecklist-${checklist.id}`}
+        on:click={(e) => e.stopPropagation()}
+      >
+        Delete
+      </Button>
+      <Popover
+        class="fixed z-60 w-64 text-sm font-light"
+        title="Delete checklist?"
+        triggeredBy={`#deleteChecklist-${checklist.id}`}
+        trigger="click"
+        placement="bottom"
+        arrow={false}
+      >
+        <div class="flex flex-col gap-2">
+          <div>Deleting a checklist is permanent and there is no way to get it back.</div>
+          <Button color="red" class="me-2" on:click={onConfirm}>Yes, I'm sure</Button>
+        </div>
+      </Popover>
     </div>
     <div>Add an item</div>
   </div>
