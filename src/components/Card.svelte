@@ -1,6 +1,11 @@
 <script>
   import { goto } from '$app/navigation';
-  import { TextSizeSolid, PaperClipSolid, AnnotationSolid } from 'flowbite-svelte-icons';
+  import {
+    TextSizeSolid,
+    PaperClipSolid,
+    AnnotationSolid,
+    CheckCircleSolid
+  } from 'flowbite-svelte-icons';
   import { longpress } from '$lib/helpers';
 
   export let card;
@@ -28,6 +33,9 @@
     {/if}
     {#if card.comments.length > 0}
       <AnnotationSolid />
+    {/if}
+    {#if card.checklists.length > 0}
+      <CheckCircleSolid />
     {/if}
   </div>
 </div>
