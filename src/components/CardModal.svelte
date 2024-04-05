@@ -2,11 +2,11 @@
   import { goto } from '$app/navigation';
   import { Modal, Button, GradientButton } from 'flowbite-svelte';
   import {
-    WindowSolid,
-    TextSizeSolid,
+    WindowOutline,
+    TextSizeOutline,
     ListSolid,
     PaperClipSolid,
-    CheckCircleSolid
+    CheckCircleOutline
   } from 'flowbite-svelte-icons';
   import DeleteCardButton from './DeleteCardButton.svelte';
   import CardName from './CardName.svelte';
@@ -35,14 +35,14 @@
   <div class="flex flex-row gap-4">
     <div class="flex flex-grow flex-col gap-4">
       <div class="flex flex-grow flex-row gap-2">
-        <WindowSolid class="h-8 w-8" />
+        <WindowOutline class="h-8 w-8" />
         <div class="flex flex-col gap-2">
           <CardName {card} />
           <div>In list: {card.list.name}</div>
         </div>
       </div>
       <div class="flex flex-grow flex-row gap-2">
-        <TextSizeSolid class="h-8 w-8" />
+        <TextSizeOutline class="h-8 w-8" />
         <div class="flex flex-grow flex-col gap-2">
           <h3 class="text-xl font-bold">Description</h3>
           <CardDesc {card} />
@@ -55,7 +55,18 @@
           <CardAttachments {card} />
         </div>
       </div>
-
+      {#each card.checklists as checklist}
+        <div class="flex flex-grow flex-row gap-2">
+          <CheckCircleOutline class="h-8 w-8" />
+          <div class="flex flex-grow flex-col gap-2">
+            <div class="flex">
+              <h3 class="flex-grow text-xl font-bold">{checklist.name}</h3>
+              <Button color="alternative">Delete</Button>
+            </div>
+            <div>Add an item</div>
+          </div>
+        </div>
+      {/each}
       <div class="flex flex-grow flex-row gap-2">
         <ListSolid class="h-8 w-8" />
         <h3 class="text-xl font-bold">Activity</h3>

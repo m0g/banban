@@ -1,11 +1,16 @@
 <script>
   import { Input, Button, Popover } from 'flowbite-svelte';
   import { enhance } from '$app/forms';
+  import { invalidateAll } from '$app/navigation';
 
   export let cardId;
-  export let lastPos = 0;
 
-  const step = 32;
+  function onEnhance({ formElement }) {
+    return async ({ update }) => {
+      document.querySelector('#createChecklist')?.click();
+      invalidateAll();
+    };
+  }
 </script>
 
 <Popover
@@ -16,10 +21,9 @@
   placement="bottom"
   arrow={false}
 >
-  <form class="flex flex-col gap-y-2" action="/checklists" method="post" use:enhance>
+  <form class="flex flex-col gap-y-2" action="/checklists" method="post" use:enhance={onEnhance}>
     <Input type="text" name="name" placeholder="Enter checklist title" autofocus />
     <input type="hidden" name="cardId" value={cardId} />
-    <input type="hidden" name="pos" value={lastPos + step} />
     <Button type="submit">Add checklist</Button>
   </form>
 </Popover>

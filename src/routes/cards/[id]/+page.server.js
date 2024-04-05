@@ -15,6 +15,7 @@ export const load = async ({ params: { id }, locals }) => {
       board: true,
       list: true,
       attachments: true,
+      checklists: true,
       actions: {
         orderBy: { date: 'desc' },
         include: { user: true, attachment: true, comment: true }
