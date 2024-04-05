@@ -6,6 +6,9 @@
   import Header from './Header.svelte';
   import { onMount } from 'svelte';
   import NewChecklist from './NewChecklist.svelte';
+    import DeleteCardButton from './DeleteCardButton.svelte';
+    import NewBoard from './NewBoard.svelte';
+    import DeleteCardPopover from './DeleteCardPopover.svelte';
 
   export let board;
   export let card;
@@ -132,6 +135,7 @@
 <CardModal {card} boardId={board.id} {user} />
 {#if card}
   <NewChecklist cardId={card.id} />
+  <DeleteCardPopover cardId={card.id} boardId={board.id} />
 {/if}
 
 <style>
