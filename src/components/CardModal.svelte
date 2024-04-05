@@ -65,8 +65,8 @@
 
     <div class="flex w-48 flex-none flex-col gap-y-2">
       <div class="font-bold">Actions</div>
-      <ChecklistButton cardId={card.id} {boardId} />
-      <DeleteCardButton cardId={card.id} {boardId} />
+      <ChecklistButton />
+      <DeleteCardButton />
     </div>
   </div>
 </Modal>

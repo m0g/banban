@@ -18,7 +18,7 @@
 
 <Popover
   class="z-60 fixed w-80 text-sm font-light"
-  title="Add checklist"
+  title="Delete card"
   triggeredBy="#deleteCard"
   trigger="click"
   placement="bottom"
