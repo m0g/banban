@@ -19,8 +19,8 @@
   export let data;
 </script>
 
-<div class="flex h-screen flex-col">
-  <Navbar color="dark" class="border-b">
+<div class="flex h-screen w-full flex-col">
+  <Navbar color="dark">
     <div class="flex gap-2">
       <NavBrand href="/" class="flex gap-2">
         <img src="/favicon.svg" alt="BanBan logo" class="w-8" />
@@ -28,7 +28,6 @@
           BanBan
         </span>
       </NavBrand>
-      <NavHamburger />
       {#if data.isLoggedIn && data.user.boards.length > 0}
         <RecentBoards boards={data.user.boards} />
       {/if}
@@ -45,7 +44,7 @@
       {:else}
         <Avatar id="user-drop" class="cursor-pointer" />
       {/if}
-      <Dropdown triggeredBy="#user-drop">
+      <Dropdown triggeredBy="#user-drop" class="rounded-lg border border-gray-500">
         <DropdownHeader>
           <span class="block text-sm">{data.user.name}</span>
           <span class="block truncate text-sm font-medium">{data.user.email}</span>

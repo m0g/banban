@@ -11,11 +11,16 @@
 </script>
 
 <div class="relative">
-  <Button color="blue" class="relative w-full" id="click" on:click={(e) => e.stopPropagation()}>
+  <Button
+    color="blue"
+    class="relative w-full"
+    id="createChecklist"
+    on:click={(e) => e.stopPropagation()}
+  >
     <CheckCircleSolid class="absolute left-4 h-4 w-4" /> Checklist
   </Button>
-  <Popover
-    class="z-10 w-64 text-sm font-light"
+  <!-- <Popover
+    class="fixed z-10 w-64 text-sm font-light"
     title="Add checklist"
     triggeredBy="#click"
     trigger="click"
@@ -28,5 +33,5 @@
       <input type="hidden" name="pos" value={lastPos + step} />
       <Button type="submit">Add checklist</Button>
     </form>
-  </Popover>
+  </Popover> -->
 </div>

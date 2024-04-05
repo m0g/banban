@@ -6,11 +6,16 @@
   import NewCard from './NewCard.svelte';
   import Card from './Card.svelte';
   import ListName from './ListName.svelte';
+  import { longpress } from '$lib/helpers';
+  import CardDesc from './CardDesc.svelte';
 
   export let list;
   export let boardId;
   export let handleDndConsiderCards;
   export let handleDndFinalizeCards;
+  export let dragDisabled;
+  export let cardDragDisabled;
+  export let isMobile;
 
   const flipDurationMs = 200;
 
@@ -20,10 +25,17 @@
     await fetch(`/boards/${boardId}/lists/${list.id}`, { method: 'delete' });
     invalidateAll();
   }
+
+  function startDrag(e) {
+    // console.log('start drag');
+    dragDisabled = false;
+  }
 </script>
 
 <div
-  class="white relative z-[1] flex max-h-full w-72 min-w-72 flex-col gap-y-2 rounded-lg bg-gray-100 py-4 dark:bg-gray-700 dark:text-white"
+  class="white relative z-[1] flex max-h-full w-72 min-w-72 cursor-pointer flex-col gap-y-2 rounded-lg bg-gray-100 py-4 dark:bg-gray-700 dark:text-white"
+  use:longpress
+  on:long={startDrag}
 >
   <div class="flex flex-row px-6">
     <ListName {list} />
@@ -35,13 +47,18 @@
     {/if}
   </div>
   <div
-    use:dndzone={{ items: cards, flipDurationMs, type: 'cards' }}
+    use:dndzone={{
+      items: cards,
+      flipDurationMs,
+      type: 'cards',
+      dragDisabled: cardDragDisabled && isMobile
+    }}
     on:consider={(e) => handleDndConsiderCards(list.id, e)}
     on:finalize={(e) => handleDndFinalizeCards(list.id, e)}
     class="flex min-h-16 flex-col gap-y-2 overflow-y-auto overflow-x-hidden px-2"
   >
     {#each cards as card (card.id)}
-      <Card {card} {boardId} {list} />
+      <Card {card} {boardId} {list} bind:cardDragDisabled />
     {/each}
   </div>
   <NewCard listId={list.id} {boardId} lastPos={cards[cards.length - 1]?.pos || 0} />

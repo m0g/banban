@@ -9,6 +9,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: { sans: ['Satoshi', 'sans-serif'] },
+      zIndex: { 60: 60 },
       colors: {
         // flowbite-svelte
         primary: {

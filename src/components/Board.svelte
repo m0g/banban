@@ -4,12 +4,23 @@
   import List from './List.svelte';
   import CardModal from './CardModal.svelte';
   import Header from './Header.svelte';
+  import { onMount } from 'svelte';
+  import NewChecklist from './NewChecklist.svelte';
 
   export let board;
   export let card;
   export let user;
 
   const flipDurationMs = 200;
+  let dragDisabled = true;
+  let cardDragDisabled = true;
+  let isMobile = false;
+
+  onMount(() => {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      isMobile = true;
+    }
+  });
 
   function handleDndConsiderLists(e) {
     board.lists = e.detail.items;
@@ -43,6 +54,8 @@
       }
       return { ...list };
     });
+
+    dragDisabled = true;
   }
 
   function handleDndConsiderCards(listId, e) {
@@ -85,6 +98,7 @@
     });
 
     board.lists = [...board.lists];
+    cardDragDisabled = true;
   }
 </script>
 
@@ -92,20 +106,36 @@
   <Header name={board.name} />
   <section
     class="relative flex flex-grow items-start gap-x-2 overflow-x-auto p-2"
-    use:dndzone={{ items: board.lists, flipDurationMs, type: 'lists' }}
+    use:dndzone={{
+      items: board.lists,
+      flipDurationMs,
+      type: 'lists',
+      dragDisabled: dragDisabled && isMobile
+    }}
     on:consider={handleDndConsiderLists}
     on:finalize={handleDndFinalizeLists}
   >
     {#each board.lists as list (list.id)}
-      <List {list} boardId={board.id} {handleDndConsiderCards} {handleDndFinalizeCards} />
+      <List
+        {list}
+        boardId={board.id}
+        {handleDndConsiderCards}
+        {handleDndFinalizeCards}
+        bind:dragDisabled
+        bind:cardDragDisabled
+        {isMobile}
+      />
     {/each}
     <NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
   </section>
 </div>
 <CardModal {card} boardId={board.id} {user} />
+{#if card}
+  <NewChecklist cardId={card.id} />
+{/if}
 
 <style>
   .page {
-    max-height: calc(100% - 73px);
+    max-height: calc(100% - 60px);
   }
 </style>

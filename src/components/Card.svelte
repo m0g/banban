@@ -1,13 +1,22 @@
 <script>
   import { goto } from '$app/navigation';
   import { TextSizeSolid, PaperClipSolid, AnnotationSolid } from 'flowbite-svelte-icons';
+  import { longpress } from '$lib/helpers';
 
   export let card;
+  export let cardDragDisabled;
+
+  function startDrag(e) {
+    console.log('start card drag');
+    cardDragDisabled = false;
+  }
 </script>
 
 <div
   class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4"
   on:click={() => goto(`/cards/${card.id}`)}
+  use:longpress={'cardLong'}
+  on:cardLong={startDrag}
 >
   <div class="flex flex-row">
     <div class="flex-grow">{card.name}</div>
