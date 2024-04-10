@@ -15,11 +15,15 @@
     console.log('start card drag');
     cardDragDisabled = false;
   }
+
+  function handleClick() {
+    goto(`/cards/${card.id}`, { noScroll: true });
+  }
 </script>
 
 <div
   class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4"
-  on:click={() => goto(`/cards/${card.id}`)}
+  on:click={handleClick}
   use:longpress={'cardLong'}
   on:cardLong={startDrag}
 >

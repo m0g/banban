@@ -84,6 +84,8 @@ model Action {
   date         DateTime    @default(now())
   comment      Comment?    @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId    String?
+  checkList    CheckList?  @relation(fields: [checkListId], references: [id], onDelete: Cascade)
+  checkListId  String?
 }
 
 model Attachment {
@@ -119,6 +121,7 @@ model CheckList {
   cardId     String?
   checkItems CheckItem[]
   date       DateTime    @default(now())
+  Action     Action[]
 }
 
 model CheckItem {

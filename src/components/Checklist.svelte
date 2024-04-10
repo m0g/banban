@@ -2,6 +2,7 @@
   import { CheckCircleOutline } from 'flowbite-svelte-icons';
   import { Button, Popover } from 'flowbite-svelte';
   import { invalidateAll } from '$app/navigation';
+  import ChecklistName from './ChecklistName.svelte';
 
   export let checklist;
 
@@ -20,7 +21,7 @@
   <CheckCircleOutline class="h-8 w-8" />
   <div class="flex flex-grow flex-col gap-2">
     <div class="flex">
-      <h3 class="flex-grow text-xl font-bold">{checklist.name}</h3>
+      <ChecklistName {checklist} />
       <Button
         color="alternative"
         id={`deleteChecklist-${checklist.id}`}

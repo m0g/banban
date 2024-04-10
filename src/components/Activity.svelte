@@ -25,6 +25,10 @@
           <span>moved this card to XXX</span>
         {:else if action.type == 'commentCard'}
           <Comment comment={action.comment} />
+        {:else if action.type == 'addCheckListToCard'}
+          <span>
+            added a checklist <b class="font-bold">{action.checkList.name}</b> to this card
+          </span>
         {:else}
           <span>added this card</span>
         {/if}

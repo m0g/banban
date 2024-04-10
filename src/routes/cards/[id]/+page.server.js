@@ -18,7 +18,7 @@ export const load = async ({ params: { id }, locals }) => {
       checklists: true,
       actions: {
         orderBy: { date: 'desc' },
-        include: { user: true, attachment: true, comment: true }
+        include: { user: true, attachment: true, comment: true, checkList: true }
       }
     }
   });

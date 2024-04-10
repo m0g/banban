@@ -1,13 +1,7 @@
 <script>
   import { goto } from '$app/navigation';
-  import { Modal, Button, GradientButton } from 'flowbite-svelte';
-  import {
-    WindowOutline,
-    TextSizeOutline,
-    ListSolid,
-    PaperClipSolid,
-    CheckCircleOutline
-  } from 'flowbite-svelte-icons';
+  import { Modal } from 'flowbite-svelte';
+  import { WindowOutline, TextSizeOutline, ListSolid, PaperClipSolid } from 'flowbite-svelte-icons';
   import DeleteCardButton from './DeleteCardButton.svelte';
   import CardName from './CardName.svelte';
   import CardDesc from './CardDesc.svelte';
