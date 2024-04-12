@@ -51,7 +51,7 @@
         </div>
       </div>
       {#each card.checklists as checklist}
-        <Checklist {checklist} />
+        <Checklist {checklist} {card} />
       {/each}
       <div class="flex flex-grow flex-row gap-2">
         <ListSolid class="h-8 w-8" />

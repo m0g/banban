@@ -3,8 +3,11 @@
   import { Button, Popover } from 'flowbite-svelte';
   import { invalidateAll } from '$app/navigation';
   import ChecklistName from './ChecklistName.svelte';
+  import NewCheckItem from './NewCheckItem.svelte';
+  import CheckItem from './CheckItem.svelte';
 
   export let checklist;
+  export let card;
 
   async function onConfirm(e) {
     e.stopPropagation();
@@ -15,6 +18,7 @@
       document.querySelector(`#deleteChecklist-${checklist.id}`)?.click();
     }
   }
+  console.log(checklist);
 </script>
 
 <div class="flex flex-grow flex-row gap-2">
@@ -43,6 +47,9 @@
         </div>
       </Popover>
     </div>
-    <div>Add an item</div>
+    {#each checklist.checkItems as checkItem}
+      <CheckItem {checkItem} />
+    {/each}
+    <NewCheckItem {checklist} {card} />
   </div>
 </div>
