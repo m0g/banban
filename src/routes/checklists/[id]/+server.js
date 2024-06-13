@@ -8,15 +8,6 @@ export async function DELETE({ params: { id }, locals }) {
 
   await prisma.checkList.delete({
     where: { id }
-    // include: {
-    //   board: {
-    //     include: {
-    //       users: {
-    //         where: { id: locals.user.id }
-    //       }
-    //     }
-    //   }
-    // }
   });
 
   return json({ success: true });
