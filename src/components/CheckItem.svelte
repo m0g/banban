@@ -8,13 +8,14 @@
   async function onClick(e) {
     const body = new FormData();
 
-    checkItem.state = isChecked ? 'incomplete' : 'complete';
     body.append('state', checkItem.state);
 
     const res = await fetch(`/checkitems/${checkItem.id}`, { method: 'PUT', body });
     const data = await res.json();
 
-    console.log(data);
+    if (data.success === true) {
+      checkItem.state = isChecked ? 'incomplete' : 'complete';
+    }
   }
 
   async function onClickDelete(e) {

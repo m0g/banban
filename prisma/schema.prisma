@@ -75,6 +75,7 @@ model Card {
 model Action {
   id           String      @id @default(nanoid())
   type         String?
+  text         String?
   user         User?       @relation(references: [id], fields: [userId])
   userId       String?
   card         Card?       @relation(fields: [cardId], references: [id])

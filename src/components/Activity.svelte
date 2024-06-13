@@ -29,6 +29,8 @@
           <span>
             added a checklist <b class="font-bold">{action.checkList.name}</b> to this card
           </span>
+        {:else if action.type == 'deleteCheckListFromCard'}
+          <span>{@html action.text}</span>
         {:else}
           <span>added this card</span>
         {/if}

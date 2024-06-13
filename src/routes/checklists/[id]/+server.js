@@ -6,8 +6,19 @@ export async function DELETE({ params: { id }, locals }) {
     return fail(403, 'Unauthorized');
   }
 
+  const checkList = await prisma.checkList.findUnique({ where: { id } });
+  console.log(checkList);
   await prisma.checkList.delete({
     where: { id }
+  });
+
+  await prisma.action.create({
+    data: {
+      type: 'deleteCheckListFromCard',
+      text: `removed <b class="font-bold">${checkList.name}</b> from this card`,
+      card: { connect: { id: checkList.cardId } },
+      user: { connect: { id: locals.user.id } }
+    }
   });
 
   return json({ success: true });

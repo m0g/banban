@@ -48,7 +48,7 @@
       </Popover>
     </div>
     {#each checklist.checkItems as checkItem}
-      <CheckItem {checkItem} />
+      <CheckItem {checkItem} {card} />
     {/each}
     <NewCheckItem {checklist} {card} />
   </div>
