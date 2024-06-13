@@ -51,7 +51,8 @@
       items: cards,
       flipDurationMs,
       type: 'cards',
-      dragDisabled: cardDragDisabled && isMobile
+      dragDisabled: cardDragDisabled && isMobile,
+      dropTargetStyle: { outline: 'rgba(255, 255, 255, 0.7) solid 2px' }
     }}
     on:consider={(e) => handleDndConsiderCards(list.id, e)}
     on:finalize={(e) => handleDndFinalizeCards(list.id, e)}

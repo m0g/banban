@@ -22,7 +22,7 @@
 </script>
 
 <div
-  class="white flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-500 px-4 py-4"
+  class="white flex min-w-60 flex-col gap-y-2 rounded-lg border-2 border-slate-500 bg-slate-500 px-2 py-2 hover:border-white"
   on:click={handleClick}
   use:longpress={'cardLong'}
   on:cardLong={startDrag}

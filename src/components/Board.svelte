@@ -6,9 +6,9 @@
   import Header from './Header.svelte';
   import { onMount } from 'svelte';
   import NewChecklist from './NewChecklist.svelte';
-    import DeleteCardButton from './DeleteCardButton.svelte';
-    import NewBoard from './NewBoard.svelte';
-    import DeleteCardPopover from './DeleteCardPopover.svelte';
+  import DeleteCardButton from './DeleteCardButton.svelte';
+  import NewBoard from './NewBoard.svelte';
+  import DeleteCardPopover from './DeleteCardPopover.svelte';
 
   export let board;
   export let card;
@@ -113,7 +113,8 @@
       items: board.lists,
       flipDurationMs,
       type: 'lists',
-      dragDisabled: dragDisabled && isMobile
+      dragDisabled: dragDisabled && isMobile,
+      dropTargetStyle: { outline: 'rgba(255, 255, 255, 0.7) solid 2px' }
     }}
     on:consider={handleDndConsiderLists}
     on:finalize={handleDndFinalizeLists}
