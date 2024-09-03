@@ -1,4 +1,6 @@
 <script>
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { dndzone } from 'svelte-dnd-action';
   import NewList from './NewList.svelte';
   import List from './List.svelte';
@@ -6,8 +8,6 @@
   import Header from './Header.svelte';
   import { onMount } from 'svelte';
   import NewChecklist from './NewChecklist.svelte';
-  import DeleteCardButton from './DeleteCardButton.svelte';
-  import NewBoard from './NewBoard.svelte';
   import DeleteCardPopover from './DeleteCardPopover.svelte';
 
   export let board;
@@ -18,6 +18,8 @@
   let dragDisabled = true;
   let cardDragDisabled = true;
   let isMobile = false;
+
+  setContext('ui', { showForm: writable(false) });
 
   onMount(() => {
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {

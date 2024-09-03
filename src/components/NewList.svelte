@@ -1,4 +1,5 @@
 <script>
+  import { getContext } from 'svelte';
   import { Input, Button } from 'flowbite-svelte';
   import { PlusSolid } from 'flowbite-svelte-icons';
   import { enhance } from '$app/forms';
@@ -7,23 +8,23 @@
   export let boardId;
   export let lastPos;
 
+  const { showForm } = getContext('ui');
   const step = 32;
-  let showForm = false;
 
   function onEnhance({ formElement }) {
     return async ({ update }) => {
       formElement.reset();
       await update();
-      showForm = false;
+      showForm.set(false);
     };
   }
 </script>
 
-{#if showForm}
+{#if $showForm === 'new-list'}
   <div
     class="z-10 flex min-w-60 flex-col gap-y-2 rounded-lg bg-slate-400 px-6 py-4"
     use:clickOutside={() => {
-      showForm = false;
+      showForm.set(false);
     }}
   >
     <div>New List</div>
@@ -38,7 +39,7 @@
   <div
     class="z-10 flex min-w-60 shrink cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
     on:click={(e) => {
-      showForm = !showForm;
+      showForm.set('new-list');
       e.stopPropagation();
     }}
   >
