@@ -7,7 +7,6 @@
   import Card from './Card.svelte';
   import ListName from './ListName.svelte';
   import { longpress } from '$lib/helpers';
-  import CardDesc from './CardDesc.svelte';
 
   export let list;
   export let boardId;

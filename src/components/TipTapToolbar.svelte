@@ -63,6 +63,17 @@
     size="xs"
     on:click={(e) => {
       e.stopPropagation();
+      editor.chain().focus().toggleStrike().run();
+    }}
+    color="cyan"
+    outline={!editor.isActive('strike')}
+  >
+    <span class="line-through">S</span>
+  </GradientButton>
+  <GradientButton
+    size="xs"
+    on:click={(e) => {
+      e.stopPropagation();
       setLink(editor);
     }}
     color="cyan"

@@ -17,7 +17,7 @@
   }
 
   function handleClick() {
-    goto(`/cards/${card.id}`, { noScroll: true });
+    goto(`/cards/${card.id}`);
   }
 </script>
 
