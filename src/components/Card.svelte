@@ -7,6 +7,7 @@
     CheckCircleSolid
   } from 'flowbite-svelte-icons';
   import { longpress } from '$lib/helpers';
+  import ChecklistIcon from './ChecklistIcon.svelte';
 
   export let card;
   export let cardDragDisabled;
@@ -39,7 +40,7 @@
       <AnnotationSolid />
     {/if}
     {#if card.checklists.length > 0}
-      <CheckCircleSolid />
+      <ChecklistIcon checklists={card.checklists} />
     {/if}
   </div>
 </div>

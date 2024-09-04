@@ -36,7 +36,6 @@ export const actions = {
           user: { connect: { id: locals.user.id } }
         }
       });
-      console.log(res);
     }
 
     throw redirect(303, `/cards/${cardId}`);

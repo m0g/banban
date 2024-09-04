@@ -5,16 +5,17 @@
 
   $: isChecked = checkItem.state === 'complete';
 
-  async function onClick(e) {
+  async function onClick() {
     const body = new FormData();
+    const newState = isChecked ? 'incomplete' : 'complete';
 
-    body.append('state', checkItem.state);
+    body.append('state', newState);
 
     const res = await fetch(`/checkitems/${checkItem.id}`, { method: 'PUT', body });
     const data = await res.json();
 
     if (data.success === true) {
-      checkItem.state = isChecked ? 'incomplete' : 'complete';
+      checkItem.state = newState;
     }
   }
 

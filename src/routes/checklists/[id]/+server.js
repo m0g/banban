@@ -7,7 +7,6 @@ export async function DELETE({ params: { id }, locals }) {
   }
 
   const checkList = await prisma.checkList.findUnique({ where: { id } });
-  console.log(checkList);
   await prisma.checkList.delete({
     where: { id }
   });
