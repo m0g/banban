@@ -1,4 +1,5 @@
 <script>
+  import { invalidateAll } from '$app/navigation';
   import { Modal, MultiSelect, Avatar, Button } from 'flowbite-svelte';
   import { getContext } from 'svelte';
 
@@ -7,9 +8,22 @@
 
   const users = getContext('users');
   const board = getContext('board');
-  console.log(users);
 
   let selected = [];
+
+  async function handleClick(e) {
+    e.stopPropagation();
+    const body = new FormData();
+    body.append('user_ids', selected);
+
+    const res = await fetch(`/boards/${board.id}`, { method: 'PUT', body });
+    const data = await res.json();
+    console.log(data);
+
+    if (data.success) {
+      invalidateAll();
+    }
+  }
 </script>
 
 <Modal
@@ -26,13 +40,14 @@
   <div class="flex gap-2">
     <MultiSelect
       class="flex-grow"
+      name="users"
       items={users.map(({ id, name }) => ({ value: id, name }))}
       bind:value={selected}
     />
-    <Button>Share</Button>
+    <Button on:click={handleClick}>Share</Button>
   </div>
   <h3>Board members</h3>
-  <div>
+  <div class="flex flex-col gap-2">
     {#each board.users as user (user.id)}
       <div class="flex flex-row items-center gap-2">
         {#if user.avatar}
