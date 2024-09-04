@@ -8,6 +8,7 @@ export const load = async ({ params: { id }, locals }) => {
   const board = await prisma.board.findUnique({
     where: { id },
     include: {
+      users: true,
       lists: {
         orderBy: { pos: 'asc' },
         include: {
@@ -26,5 +27,10 @@ export const load = async ({ params: { id }, locals }) => {
     }
   });
 
-  return { board };
+  const users = await prisma.user.findMany();
+
+  return {
+    board,
+    users: users.map(({ id, email, name, avatar }) => ({ id, email, name, avatar }))
+  };
 };

@@ -23,7 +23,7 @@
   }
 </script>
 
-<span class="flex">
+<span class="flex gap-1">
   <CheckCircleSolid />
   {#if items > 0}
     <span class="text-xs">{completedItems}/{items}</span>
