@@ -31,7 +31,7 @@
     <div class="flex flex-grow flex-col gap-4">
       <div class="flex flex-grow flex-row gap-2">
         <WindowOutline class="h-8 w-8" />
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-grow flex-col gap-2">
           <CardName {card} />
           <div>In list: {card.list.name}</div>
         </div>
