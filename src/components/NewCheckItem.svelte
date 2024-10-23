@@ -1,21 +1,15 @@
 <script>
   import { Input, Button } from 'flowbite-svelte';
-  import { PlusSolid } from 'flowbite-svelte-icons';
   import { enhance } from '$app/forms';
   import { clickOutside } from '$lib/helpers';
 
-  // export let boardId;
-  // export let lastPos;
   export let checklist;
   export let card;
 
-  // const step = 32;
   let showForm = false;
 
   function onEnhance({ formElement }) {
-    console.log('enhance');
     return async ({ update }) => {
-      // console.log('hello');
       formElement.reset();
       await update();
       showForm = false;
@@ -26,8 +20,6 @@
     showForm = !showForm;
     e.stopPropagation();
   }
-
-  console.log(checklist.id, card.id);
 </script>
 
 {#if showForm}
@@ -45,7 +37,7 @@
     <input type="hidden" name="cardId" value={card.id} />
     <input type="hidden" name="state" value="incomplete" />
     <div>
-      <Button type="submit" color="dark" on:click={(e) => e.stopPropagation()}>Add list</Button>
+      <Button type="submit" color="dark" on:click={(e) => e.stopPropagation()}>Add item</Button>
       <Button color="alternative" on:click={toggleForm}>Cancel</Button>
     </div>
   </form>

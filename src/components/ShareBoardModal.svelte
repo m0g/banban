@@ -18,7 +18,6 @@
 
     const res = await fetch(`/boards/${board.id}`, { method: 'PUT', body });
     const data = await res.json();
-    console.log(data);
 
     if (data.success) {
       invalidateAll();

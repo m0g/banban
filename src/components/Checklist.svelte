@@ -18,7 +18,6 @@
       document.querySelector(`#deleteChecklist-${checklist.id}`)?.click();
     }
   }
-  console.log(checklist);
 </script>
 
 <div class="flex flex-grow flex-row gap-2">

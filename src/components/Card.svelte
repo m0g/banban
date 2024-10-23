@@ -1,11 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
-  import {
-    TextSizeSolid,
-    PaperClipSolid,
-    AnnotationSolid,
-    CheckCircleSolid
-  } from 'flowbite-svelte-icons';
+  import { TextSizeSolid, PaperClipSolid, AnnotationSolid } from 'flowbite-svelte-icons';
   import { longpress } from '$lib/helpers';
   import ChecklistIcon from './ChecklistIcon.svelte';
 
@@ -13,7 +8,6 @@
   export let cardDragDisabled;
 
   function startDrag(e) {
-    console.log('start card drag');
     cardDragDisabled = false;
   }
 

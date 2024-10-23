@@ -8,7 +8,6 @@ export async function PUT({ params: { id }, request, locals }) {
 
   const formData = await request.formData();
   const userIds = formData.get('user_ids').split(',');
-  console.log(userIds);
 
   let data = {};
 
@@ -24,11 +23,10 @@ export async function PUT({ params: { id }, request, locals }) {
   }
 
   try {
-    const board = await prisma.board.update({
+    await prisma.board.update({
       where: { id },
       data
     });
-    console.log(board);
   } catch (e) {
     console.error(e);
   }

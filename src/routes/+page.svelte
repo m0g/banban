@@ -10,7 +10,7 @@
 </svelte:head>
 
 <main class="flex flex-grow flex-col bg-gradient-to-r from-amber-500 to-yellow-500">
-  <Header name="Boards" />
+  <Header name="Boards" shareDisabled />
   <div class="flex flex-wrap gap-4 p-2">
     {#each data.boards as board (board.id)}
       <a href="/boards/{board.id}">

@@ -6,8 +6,6 @@
   let items = 0;
   let completedItems = 0;
 
-  console.log(checklists);
-
   for (let checklist of checklists) {
     if (checklist.checkItems.length > 0) {
       items = items + checklist.checkItems.length;

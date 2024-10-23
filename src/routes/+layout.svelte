@@ -3,19 +3,18 @@
     Avatar,
     Navbar,
     NavBrand,
-    NavHamburger,
     NavUl,
     NavLi,
-    Button,
     Dropdown,
     DropdownHeader,
     DropdownItem,
     DropdownDivider
   } from 'flowbite-svelte';
-  import { ChevronDownSolid } from 'flowbite-svelte-icons';
   import { enhance } from '$app/forms';
   import '../app.pcss';
   import RecentBoards from '../components/RecentBoards.svelte';
+  import { version } from '$app/environment';
+
   export let data;
 </script>
 
@@ -24,9 +23,12 @@
     <div class="flex gap-2">
       <NavBrand href="/" class="flex gap-2">
         <img src="/favicon.svg" alt="BanBan logo" class="w-8" />
-        <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          BanBan
-        </span>
+        <div class="flex flex-col">
+          <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            BanBan
+          </span>
+          <span class="text-xs">{version}</span>
+        </div>
       </NavBrand>
       {#if data.isLoggedIn && data.user.boards.length > 0}
         <RecentBoards boards={data.user.boards} />

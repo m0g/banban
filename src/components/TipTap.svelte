@@ -28,6 +28,7 @@
         editor = editor;
       }
     });
+    editor.commands.focus();
   });
 
   onDestroy(() => {

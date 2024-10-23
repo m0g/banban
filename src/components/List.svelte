@@ -25,8 +25,7 @@
     invalidateAll();
   }
 
-  function startDrag(e) {
-    // console.log('start drag');
+  function startDrag() {
     dragDisabled = false;
   }
 </script>

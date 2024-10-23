@@ -18,17 +18,14 @@ export function clickOutside(element, callbackFunction) {
 }
 
 export function longpress(node, eventName = 'long') {
-  // console.log(node);
   const TIME_MS = 100;
   let timeoutPtr;
 
   // TODO: there is an infinite loop in there
   function handleMouseDown(e) {
     e.stopPropagation();
-    console.log('touch down', eventName);
     window.addEventListener('touchmove', handleMoveBeforeLong);
     timeoutPtr = window.setTimeout(() => {
-      // console.log('looooong press!');
       window.removeEventListener('touchmove', handleMoveBeforeLong);
       node.dispatchEvent(new CustomEvent(eventName));
       // TODO - ideally make this not trigger long press again
@@ -37,7 +34,6 @@ export function longpress(node, eventName = 'long') {
   }
 
   function handleMoveBeforeLong(e) {
-    console.log('handle before long');
     window.clearTimeout(timeoutPtr);
     window.removeEventListener('touchmove', handleMoveBeforeLong);
   }
