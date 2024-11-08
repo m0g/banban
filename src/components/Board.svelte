@@ -143,6 +143,6 @@
 
 <style>
   .page {
-    max-height: calc(100% - 60px);
+    max-height: calc(100% - 64px);
   }
 </style>

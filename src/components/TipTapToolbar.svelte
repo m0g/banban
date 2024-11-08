@@ -1,6 +1,6 @@
 <script>
   import { GradientButton } from 'flowbite-svelte';
-  import { CodeSolid } from 'flowbite-svelte-icons';
+  import { CodeSolid, LetterBoldSolid } from 'flowbite-svelte-icons';
 
   export let editor;
 
@@ -58,6 +58,17 @@
     outline={!editor.isActive('paragraph')}
   >
     P
+  </GradientButton>
+  <GradientButton
+    size="xs"
+    on:click={(e) => {
+      e.stopPropagation();
+      editor.chain().focus().toggleBold().run();
+    }}
+    color="cyan"
+    outline={!editor.isActive('bold')}
+  >
+    <LetterBoldSolid />
   </GradientButton>
   <GradientButton
     size="xs"
