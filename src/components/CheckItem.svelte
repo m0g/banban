@@ -1,9 +1,8 @@
 <script>
   import { invalidateAll } from '$app/navigation';
   import { Checkbox } from 'flowbite-svelte';
-  export let checkItem;
-
-  $: isChecked = checkItem.state === 'complete';
+  let { checkItem } = $props();
+  const isChecked = $derived(checkItem.state === 'complete');
 
   async function onClick() {
     const body = new FormData();
