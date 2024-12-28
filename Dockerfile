@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:20-alpine AS builder
+FROM --platform=linux/amd64 node:22-alpine AS builder
 WORKDIR /app
 COPY package*.json .
 RUN npm ci
@@ -8,7 +8,7 @@ RUN npx prisma generate
 RUN npm run build
 RUN npm prune --production
 
-FROM --platform=linux/amd64 node:20-alpine
+FROM --platform=linux/amd64 node:22-alpine
 WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
