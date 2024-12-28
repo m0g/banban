@@ -20,11 +20,16 @@ export async function PUT({ params: { id }, request, locals }) {
 
   const formData = await request.formData();
   const state = formData.get('state');
+  const name = formData.get('name');
 
   let data = {};
 
   if (state) {
     data = { ...data, state };
+  }
+
+  if (name) {
+    data = { ...data, name };
   }
 
   try {
