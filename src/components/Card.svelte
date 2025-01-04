@@ -12,7 +12,15 @@
   }
 
   function handleClick() {
-    goto(`/cards/${card.id}`);
+    const scrollablePart = document.getElementById('scrollable-part');
+    let scrollLeft = 0;
+
+    if (scrollablePart) {
+      console.log(scrollablePart.scrollLeft);
+      scrollLeft = scrollablePart.scrollLeft;
+    }
+
+    goto(`/cards/${card.id}?scrollLeft=${scrollLeft}`);
   }
 </script>
 

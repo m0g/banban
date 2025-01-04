@@ -1,7 +1,9 @@
 import prisma from '$lib/prisma';
 import { redirect } from '@sveltejs/kit';
 
-export const load = async ({ params: { id }, locals }) => {
+export const load = async ({ params: { id }, locals, url }) => {
+  const scrollLeft = parseInt(url.searchParams.get('scrollLeft'));
+
   if (!locals.user) redirect(302, '/signin');
 
   // Todo: check that the board belongs to the user
@@ -31,6 +33,7 @@ export const load = async ({ params: { id }, locals }) => {
 
   return {
     board,
+    scrollLeft,
     users: users.map(({ id, email, name, avatar }) => ({ id, email, name, avatar }))
   };
 };

@@ -10,17 +10,32 @@
   import ChecklistButton from './ChecklistButton.svelte';
   import Checklist from './Checklist.svelte';
 
-  export let card;
-  export let boardId;
-  export let user;
+  const { card, boardId, user, scrollLeft } = $props();
+  // export let card;
+  // export let boardId;
+  // export let user;
+  // export let scrollLeft;
+  let showModal = $state(!!card);
+
+  function handleClose() {
+    let boardUrl = `/boards/${boardId}`;
+
+    if (scrollLeft) {
+      boardUrl = `/boards/${boardId}?scrollLeft=${scrollLeft}`;
+    }
+
+    console.log(boardUrl);
+    goto(boardUrl);
+  }
+
+  console.log(card);
 </script>
 
 <Modal
-  bind:open={card}
+  bind:open={showModal}
   autoclose
   outsideclose
   placement="center"
-  on:close={() => goto(`/boards/${boardId}`)}
   size="lg"
   bodyClass="bg-slate-500 p-4 md:p-5 space-y-4 flex-1 rounded-lg text-white"
   backdropClass="fixed inset-0 z-40 bg-gray-900 bg-opacity-50"

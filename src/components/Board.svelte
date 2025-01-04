@@ -1,25 +1,25 @@
 <script>
-  import { setContext } from 'svelte';
+  import { setContext, onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { dndzone } from 'svelte-dnd-action';
   import NewList from './NewList.svelte';
   import List from './List.svelte';
   import CardModal from './CardModal.svelte';
   import Header from './Header.svelte';
-  import { onMount } from 'svelte';
   import NewChecklist from './NewChecklist.svelte';
   import DeleteCardPopover from './DeleteCardPopover.svelte';
 
   export let board;
   export let card;
   export let user;
+  export let scrollLeft;
 
   const flipDurationMs = 200;
   let dragDisabled = true;
   let cardDragDisabled = true;
   let isMobile = false;
 
-  setContext('ui', { showForm: writable(false) });
+  setContext('ui', { showForm: writable(false), scrollLeft: writable(0) });
 
   onMount(() => {
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -105,11 +105,20 @@
     board.lists = [...board.lists];
     cardDragDisabled = true;
   }
+
+  onMount(() => {
+    const scrollablePart = document.getElementById('scrollable-part');
+
+    if (scrollablePart) {
+      scrollablePart.scrollLeft = scrollLeft;
+    }
+  });
 </script>
 
 <div class="page flex flex-grow flex-col bg-gradient-to-r from-cyan-500 to-blue-500">
   <Header name={board.name} />
   <section
+    id="scrollable-part"
     class="relative flex flex-grow items-start gap-x-2 overflow-x-auto p-2"
     use:dndzone={{
       items: board.lists,
@@ -135,7 +144,7 @@
     <NewList boardId={board.id} lastPos={board.lists[board.lists.length - 1]?.pos || 0} />
   </section>
 </div>
-<CardModal {card} boardId={board.id} {user} />
+<CardModal {card} boardId={board.id} {user} {scrollLeft} />
 {#if card}
   <NewChecklist cardId={card.id} />
   <DeleteCardPopover cardId={card.id} boardId={board.id} />

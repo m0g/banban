@@ -1,10 +1,9 @@
 import prisma from '$lib/prisma';
-import fs from 'fs/promises';
-import path from 'path';
-import { redirect, fail } from '@sveltejs/kit';
-import sharp from 'sharp';
+import { fail } from '@sveltejs/kit';
 
-export const load = async ({ params: { id }, locals }) => {
+export const load = async ({ params: { id }, locals, url }) => {
+  const scrollLeft = parseInt(url.searchParams.get('scrollLeft'));
+
   if (!locals.user) {
     return fail(403, 'Unauthorized');
   }
@@ -54,5 +53,5 @@ export const load = async ({ params: { id }, locals }) => {
     select: { name: true, avatar: true }
   });
 
-  return { board, card, user };
+  return { board, card, user, scrollLeft };
 };
