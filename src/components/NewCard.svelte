@@ -37,7 +37,7 @@
 {:else}
   <div
     class="flex cursor-pointer flex-row gap-x-2 px-4 pt-1"
-    on:click={(e) => {
+    onclick={(e) => {
       showForm.set(listId);
       e.stopPropagation();
     }}

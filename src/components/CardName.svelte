@@ -6,7 +6,8 @@
   let { card } = $props();
   let showForm = $state(false);
 
-  async function onSubmit() {
+  async function onSubmit(e) {
+    e.preventDefault();
     const body = new FormData();
 
     body.append('name', card.name);
@@ -32,7 +33,7 @@
     use:clickOutside={() => {
       showForm = false;
     }}
-    on:submit|preventDefault={onSubmit}
+    onsubmit={onSubmit}
   >
     <Input
       type="text"
@@ -44,5 +45,5 @@
     />
   </form>
 {:else}
-  <div class="text-2xl font-bold" on:click={toggleForm}>{card.name}</div>
+  <div class="text-2xl font-bold" onclick={toggleForm}>{card.name}</div>
 {/if}
