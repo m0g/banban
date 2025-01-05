@@ -1,9 +1,9 @@
 <script>
   import { invalidateAll } from '$app/navigation';
   import TipTap from './TipTap.svelte';
-  export let card;
 
-  let showForm = false;
+  let { card } = $props();
+  let showForm = $state(false);
 
   async function handleSubmit(value) {
     const body = new FormData();
@@ -28,7 +28,7 @@
 {:else}
   <div
     class="white flex-grow rounded-lg bg-gray-600 px-2 py-1 text-gray-400"
-    on:click={() => (showForm = !showForm)}
+    onclick={() => (showForm = !showForm)}
   >
     Write a comment...
   </div>

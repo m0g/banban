@@ -43,7 +43,7 @@
     <TipTapToolbar {editor} />
   {/if}
 
-  <div bind:this={element} />
+  <div bind:this={element}></div>
 </div>
 <div class="flex flex-row gap-4">
   <Button

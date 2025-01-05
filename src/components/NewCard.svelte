@@ -5,11 +5,8 @@
   import { enhance } from '$app/forms';
   import { clickOutside } from '$lib/helpers';
 
-  export let listId;
-  export let boardId;
-  export let lastPos = 0;
-
-  const step = 32;
+  let { listId, boardId, lastPos = 0 } = $props();
+  const step = $state(32);
   const { showForm } = getContext('ui');
 
   function onEnhance({ formElement }) {

@@ -3,10 +3,8 @@
   import { UserAddSolid } from 'flowbite-svelte-icons';
   import ShareBoardModal from './ShareBoardModal.svelte';
 
-  export let name;
-  export let shareDisabled = false;
-
-  let showModal = false;
+  let { name, shareDisabled = false } = $props();
+  let showModal = $state(false);
 
   function handleClick() {
     showModal = true;
