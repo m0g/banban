@@ -3,9 +3,8 @@
   import { Input } from 'flowbite-svelte';
   import { clickOutside } from '$lib/helpers';
 
-  export let card;
-
-  let showForm = false;
+  let { card } = $props();
+  let showForm = $state(false);
 
   async function onSubmit() {
     const body = new FormData();

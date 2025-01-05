@@ -1,8 +1,7 @@
 <script>
   import TipTap from './TipTap.svelte';
-  export let card;
-
-  let showForm = false;
+  let { card } = $props();
+  let showForm = $state(false);
 
   async function handleSubmit(value) {
     const body = new FormData();

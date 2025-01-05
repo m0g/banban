@@ -1,10 +1,9 @@
 <script>
   import { CheckCircleSolid } from 'flowbite-svelte-icons';
 
-  export let checklists;
-
-  let items = 0;
-  let completedItems = 0;
+  let { checklists } = $props();
+  let items = $state(0);
+  let completedItems = $state(0);
 
   for (let checklist of checklists) {
     if (checklist.checkItems.length > 0) {

@@ -1,5 +1,5 @@
 <script>
-  import { Input, Button, Popover } from 'flowbite-svelte';
+  import { Button } from 'flowbite-svelte';
   import { CheckCircleSolid } from 'flowbite-svelte-icons';
 </script>
 

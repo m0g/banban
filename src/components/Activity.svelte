@@ -4,7 +4,7 @@
   import relativeTime from 'dayjs/plugin/relativeTime';
   import Comment from './Comment.svelte';
 
-  export let action;
+  let { action } = $props();
 
   dayjs.extend(relativeTime);
 </script>
