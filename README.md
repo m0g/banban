@@ -1,4 +1,5 @@
 # BanBan the Kanban board
+![screenshot](https://github.com/m0g/banban/blob/main/screenshot.png?raw=true)
 
 ## Installation
 
