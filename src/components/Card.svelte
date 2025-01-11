@@ -7,7 +7,7 @@
   export let card;
   export let cardDragDisabled;
 
-  function startDrag(e) {
+  function startDrag() {
     cardDragDisabled = false;
   }
 

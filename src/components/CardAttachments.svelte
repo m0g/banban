@@ -2,7 +2,7 @@
   import Dropzone from './Dropzone.svelte';
   import Attachment from './Attachment.svelte';
 
-  export let card;
+  let { card } = $props();
 </script>
 
 <ul class="flex flex-col gap-1">

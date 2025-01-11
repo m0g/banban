@@ -3,10 +3,10 @@
   import { enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
 
-  export let cardId;
+  let { cardId } = $props();
 
-  function onEnhance({ formElement }) {
-    return async ({ update }) => {
+  function onEnhance() {
+    return async () => {
       document.querySelector('#createChecklist')?.click();
       invalidateAll();
     };
@@ -14,7 +14,7 @@
 </script>
 
 <Popover
-  class="z-60 fixed w-64 text-sm font-light"
+  class="fixed z-60 w-64 text-sm font-light"
   title="Add checklist"
   triggeredBy="#createChecklist"
   trigger="click"

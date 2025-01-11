@@ -3,10 +3,8 @@
   import { enhance } from '$app/forms';
   import { clickOutside } from '$lib/helpers';
 
-  export let checklist;
-  export let card;
-
-  let showForm = false;
+  let { checklist, card } = $props();
+  let showForm = $state(false);
 
   function onEnhance({ formElement }) {
     return async ({ update }) => {

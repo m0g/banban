@@ -2,7 +2,7 @@
   import { GradientButton } from 'flowbite-svelte';
   import { CodeSolid, LetterBoldSolid } from 'flowbite-svelte-icons';
 
-  export let editor;
+  let { editor } = $props();
 
   function setLink(editor) {
     const previousUrl = editor.getAttributes('link').href;

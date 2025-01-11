@@ -3,9 +3,9 @@
   import { invalidateAll } from '$app/navigation';
   import { Button, Modal } from 'flowbite-svelte';
 
-  export let attachment;
+  let { attachment } = $props();
 
-  let deleteModal = false;
+  let deleteModal = $state(false);
 
   function onOpenModal(e) {
     e.preventDefault();

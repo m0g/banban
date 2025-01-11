@@ -3,13 +3,12 @@
   import { Modal, MultiSelect, Avatar, Button } from 'flowbite-svelte';
   import { getContext } from 'svelte';
 
-  export let showModal;
-  export let handleClose;
+  let { showModal, handleClose } = $props();
 
   const users = getContext('users');
   const board = getContext('board');
 
-  let selected = [];
+  let selected = $state([]);
 
   async function handleClick(e) {
     e.stopPropagation();

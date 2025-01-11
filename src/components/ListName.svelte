@@ -1,34 +1,34 @@
 <script>
-	import { Input } from 'flowbite-svelte';
+  import { Input } from 'flowbite-svelte';
 
-	export let list;
+  let { list } = $props();
+  let showForm = $state(false);
 
-	let showForm = false;
+  async function onSubmit(e) {
+    e.preventDefault();
+    const body = new FormData();
 
-	async function onSubmit() {
-		const body = new FormData();
+    body.append('name', list.name);
 
-		body.append('name', list.name);
+    const res = await fetch(`/lists/${list.id}`, { method: 'PUT', body });
+    const data = await res.json();
 
-		const res = await fetch(`/lists/${list.id}`, { method: 'PUT', body });
-		const data = await res.json();
-
-		if (data.success) {
-			showForm = false;
-		}
-	}
+    if (data.success) {
+      showForm = false;
+    }
+  }
 </script>
 
 {#if showForm}
-	<form class="flex flex-col gap-y-2" on:submit|preventDefault={onSubmit}>
-		<Input
-			type="text"
-			name="name"
-			placeholder="Enter list title"
-			bind:value={list.name}
-			autofocus
-		/>
-	</form>
+  <form class="flex flex-col gap-y-2" onsubmit={onSubmit}>
+    <Input
+      type="text"
+      name="name"
+      placeholder="Enter list title"
+      bind:value={list.name}
+      autofocus
+    />
+  </form>
 {:else}
-	<div class="flex-grow" on:click={() => (showForm = !showForm)}>{list.name}</div>
+  <div class="flex-grow" onclick={() => (showForm = !showForm)}>{list.name}</div>
 {/if}

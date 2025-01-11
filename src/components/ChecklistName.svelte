@@ -2,11 +2,11 @@
   import { invalidateAll } from '$app/navigation';
   import { Input } from 'flowbite-svelte';
 
-  export let checklist;
+  let { checklist } = $props();
+  let showForm = $state(false);
 
-  let showForm = false;
-
-  async function onSubmit() {
+  async function onSubmit(e) {
+    e.preventDefault();
     const body = new FormData();
 
     body.append('name', checklist.name);
@@ -22,10 +22,7 @@
 </script>
 
 {#if showForm}
-  <form
-    class="flex flex-grow flex-col gap-y-2 text-2xl font-bold"
-    on:submit|preventDefault={onSubmit}
-  >
+  <form class="flex flex-grow flex-col gap-y-2 text-2xl font-bold" onsubmit={onSubmit}>
     <Input
       type="text"
       name="name"
@@ -36,7 +33,7 @@
     />
   </form>
 {:else}
-  <div class="flex-grow text-xl font-bold" on:click={() => (showForm = !showForm)}>
+  <div class="flex-grow text-xl font-bold" onclick={() => (showForm = !showForm)}>
     {checklist.name}
   </div>
 {/if}

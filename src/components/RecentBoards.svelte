@@ -2,7 +2,7 @@
   import { Button, Dropdown, DropdownItem } from 'flowbite-svelte';
   import { ChevronDownSolid } from 'flowbite-svelte-icons';
 
-  export let boards;
+  let { boards } = $props();
 </script>
 
 <Button size="xs" id="recent-drop" color="alternative">

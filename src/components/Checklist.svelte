@@ -6,8 +6,7 @@
   import NewCheckItem from './NewCheckItem.svelte';
   import CheckItem from './CheckItem.svelte';
 
-  export let checklist;
-  export let card;
+  let { checklist, card } = $props();
 
   async function onConfirm(e) {
     e.stopPropagation();

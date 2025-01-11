@@ -5,11 +5,9 @@
   import { enhance } from '$app/forms';
   import { clickOutside } from '$lib/helpers';
 
-  export let boardId;
-  export let lastPos;
-
+  let { boardId, lastPos } = $props();
   const { showForm } = getContext('ui');
-  const step = 32;
+  const step = $state(32);
 
   function onEnhance({ formElement }) {
     return async ({ update }) => {
@@ -38,7 +36,7 @@
 {:else}
   <div
     class="z-10 flex min-w-60 shrink cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
-    on:click={(e) => {
+    onclick={(e) => {
       showForm.set('new-list');
       e.stopPropagation();
     }}

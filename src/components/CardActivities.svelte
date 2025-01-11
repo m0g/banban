@@ -3,8 +3,7 @@
   import Activity from './Activity.svelte';
   import CommentText from './CommentText.svelte';
 
-  export let card;
-  export let user;
+  let { card, user } = $props();
 </script>
 
 <div class="flex flex-col gap-3">
