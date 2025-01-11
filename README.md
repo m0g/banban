@@ -5,6 +5,7 @@
 
 ```bash
 npm install
+cp sample.env .env
 npx prisma migrate dev
 ```
 
