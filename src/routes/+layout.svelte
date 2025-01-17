@@ -13,12 +13,13 @@
   import { enhance } from '$app/forms';
   import '../app.pcss';
   import RecentBoards from '../components/RecentBoards.svelte';
-  import { version } from '$app/environment';
+  import { version, dev } from '$app/environment';
 
-  export let data;
+  let { data } = $props();
+  let devClass = $derived(dev ? 'border-4 border-red-500' : '');
 </script>
 
-<div class="flex h-screen w-full flex-col">
+<div class="flex h-screen w-full flex-col {devClass}">
   <Navbar color="dark">
     <div class="flex gap-2">
       <NavBrand href="/" class="flex gap-2">
