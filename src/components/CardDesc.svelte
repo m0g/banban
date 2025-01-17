@@ -20,7 +20,6 @@
 
   function handleCancel(e) {
     e.stopPropagation();
-    console.log('Handle cancel');
     showForm = false;
   }
 </script>
