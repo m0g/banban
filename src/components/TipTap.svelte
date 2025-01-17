@@ -7,11 +7,9 @@
   import { Button } from 'flowbite-svelte';
   import TipTapToolbar from './TipTapToolbar.svelte';
 
-  export let onSubmit;
-  export let value;
-
-  let element;
-  let editor;
+  let { onSubmit, onCancel, value } = $props();
+  let element = $state();
+  let editor = $state();
 
   onMount(() => {
     editor = new Editor({
@@ -36,21 +34,31 @@
       editor.destroy();
     }
   });
+
+  function handleKeyboard(e) {
+    if (e.keyCode === 27) {
+      e.stopPropagation();
+      onCancel(e);
+    } else if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.stopPropagation();
+      onSubmit(editor.getHTML());
+    }
+  }
 </script>
 
-<div class="rounded-lg border-2">
+<div class="rounded-lg border-2" onkeydown={handleKeyboard}>
   {#if editor}
     <TipTapToolbar {editor} />
   {/if}
 
-  <div bind:this={element} />
+  <div bind:this={element}></div>
 </div>
 <div class="flex flex-row gap-4">
   <Button
-    on:click={(e) => {
+    onclick={(e) => {
       e.stopPropagation();
       onSubmit(editor.getHTML());
     }}>Save</Button
   >
-  <Button color="alternative">Cancel</Button>
+  <Button color="alternative" onclick={onCancel}>Cancel</Button>
 </div>

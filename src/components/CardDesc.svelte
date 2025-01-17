@@ -1,8 +1,8 @@
 <script>
   import TipTap from './TipTap.svelte';
-  export let card;
 
-  let showForm = false;
+  let { card } = $props();
+  let showForm = $state(false);
 
   async function handleSubmit(value) {
     const body = new FormData();
@@ -17,12 +17,18 @@
       card.desc = value;
     }
   }
+
+  function handleCancel(e) {
+    e.stopPropagation();
+    console.log('Handle cancel');
+    showForm = false;
+  }
 </script>
 
 {#if showForm}
-  <TipTap value={card.desc} onSubmit={handleSubmit} />
+  <TipTap value={card.desc} onSubmit={handleSubmit} onCancel={handleCancel} />
 {:else}
-  <div class="editor-prose" on:click={() => (showForm = !showForm)}>
+  <div class="editor-prose" onclick={() => (showForm = !showForm)}>
     {#if card.desc}
       {@html card.desc}
     {:else}
