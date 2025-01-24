@@ -20,10 +20,9 @@ npm run dev
 Use the following `docker-compose` config:
 
 ```yaml
-version: '3.7'
 services:
   banban:
-    image: m0gd0ck/banban:latest
+    image: ghcr.io/m0g/banban:main
     container_name: banban
     restart: always
     environment:
