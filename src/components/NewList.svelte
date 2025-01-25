@@ -5,9 +5,7 @@
   import { enhance } from '$app/forms';
   import { clickOutside } from '$lib/helpers';
 
-  export let boardId;
-  export let lastPos;
-
+  let { boardId, lastPos } = $props();
   const { showForm } = getContext('ui');
   const step = 32;
 
@@ -17,6 +15,11 @@
       await update();
       showForm.set(false);
     };
+  }
+
+  function onClick(e) {
+    showForm.set('new-list');
+    e.stopPropagation();
   }
 </script>
 
@@ -36,14 +39,11 @@
     </form>
   </div>
 {:else}
-  <div
+  <button
     class="z-10 flex min-w-60 shrink cursor-pointer flex-row gap-x-2 rounded-lg bg-slate-200 px-6 py-4"
-    on:click={(e) => {
-      showForm.set('new-list');
-      e.stopPropagation();
-    }}
+    onclick={onClick}
   >
     <PlusSolid />
-    <span>Add another list</span>
-  </div>
+    <span>Add another listttt</span>
+  </button>
 {/if}
